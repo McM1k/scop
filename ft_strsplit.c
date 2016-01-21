@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 20:54:26 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/10 20:00:08 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 18:14:20 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ static int		ft_howmuchrow(const char *s, char c)
 		i++;
 	}
 	return (row);
-}
-
-static int		ft_strlenc(char *s, char c)
-{
-	int		i;
-
-	i = 0;
-	while (*(s + i) != c)
-		i++;
-	return (i);
 }
 
 static char		*ft_setptr(char const *s, char c, int l)
