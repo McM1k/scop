@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 21:50:40 by gboudrie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:55:07 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 18:04:54 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int					ft_isupper(int c);
 int					ft_islower(int c);
 double				ft_pow(double x, double pow);
 int					ft_sqrt(int x);
-t_list				ft_lstlast(t_list **alst);
+t_list				*ft_lstlast(t_list **alst);
 void				ft_lstaddq(t_list **alst, t_list *new);
 
 #endif

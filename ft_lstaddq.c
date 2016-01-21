@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 17:42:00 by gboudrie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:53:32 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 18:05:23 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,4 @@ void		ft_lstaddq(t_list **alst, t_list *new)
 
 	if ((ptr = ft_lstlast(alst)) != NULL)
 		ptr->next = new;
-	return (NULL);
 }
