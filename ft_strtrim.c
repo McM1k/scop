@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 20:12:28 by gboudrie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:28:59 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:37:55 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ char		*ft_strtrim(char const *s)
 		return ("");
 	while (ft_issemispace(ptr[i - 1]) == 1)
 		i--;
-	if ((str = ft_strnew(size)) != NULL)
+	if ((str = ft_strnew(i)) != NULL)
 	{
-		str[size] = '\0';
-		while (size)
+		str[i] = '\0';
+		while (i)
 		{
-			str[size - 1] = ptr[size - 1];
-			size--;
+			str[i - 1] = ptr[i - 1];
+			i--;
 		}
 		return (str);
 	}
