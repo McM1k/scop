@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/28 13:37:15 by gboudrie          #+#    #+#              #
-#    Updated: 2015/12/15 23:23:44 by gboudrie         ###   ########.fr        #
+#    Updated: 2016/01/21 17:56:02 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,7 +32,8 @@ SOURCES =	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 			ft_isspace.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
-			ft_lstiter.c ft_lstmap.c ft_pow.c ft_sqrt.c
+			ft_lstiter.c ft_lstmap.c ft_pow.c ft_sqrt.c ft_lstlast.c \
+			ft_lstaddq.c
 
 OBJS =		$(SOURCES:.c=.o)
 
