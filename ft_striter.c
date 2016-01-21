@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 10:21:09 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/04 17:18:55 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:28:29 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void		ft_striter(char *s, void (*f)(char *))
 {
-	size_t		i;
+	char		ptr;
 
-	i = 0;
-	while (s[i])
+	ptr = s;
+	while (*ptr != '\0')
 	{
-		f(&s[i]);
-		i++;
+		f(ptr);
+		ptr++;
 	}
 }

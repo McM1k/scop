@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 11:40:13 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/04 18:50:49 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:46:17 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ char		*ft_strmap(char const *s, char (*f)(char))
 	char	*s_new;
 
 	i = 0;
-	s_new = NULL;
-	s_new = ft_strnew(ft_strlen(s));
-	if (!s_new)
-		return (NULL);
-	while (s[i])
+	if ((s_new = ft_strnew(ft_strlen(s))) != NULL)
 	{
-		s_new[i] = f(s[i]);
-		i++;
+		while (s[i])
+		{
+			s_new[i] = f(s[i]);
+			i++;
+		}
+		return (s_new);
 	}
-	s_new[i] = '\0';
-	return (s_new);
+	return (NULL);
 }

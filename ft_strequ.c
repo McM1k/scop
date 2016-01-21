@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 17:12:45 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/03 17:19:47 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:53:55 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			ft_strequ(char const *s1, char const *s2)
 {
-	if (!(ft_strcmp(s1, s2)))
+	if (!(ft_strcmp(s1, s2)) || (!*s1 && !*s2))
 		return (1);
 	else
 		return (0);

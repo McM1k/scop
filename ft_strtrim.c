@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 20:12:28 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/08 16:50:19 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:28:59 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@ static int	ft_issemispace(char c)
 char		*ft_strtrim(char const *s)
 {
 	char		*str;
-	size_t		c_begin;
-	size_t		c_end;
+	char		*ptr;
 	size_t		i;
 
-	c_begin = 0;
-	c_end = 0;
-	i = ft_strlen(s);
-	while ((ft_issemispace(s[c_begin]) == 1) && (s[c_begin]))
-		c_begin++;
-	if (c_begin == i)
+	ptr = (char *)s;
+	while ((ft_issemispace(*ptr) == 1) && (*ptr))
+		ptr++;
+	i = ft_strlen(ptr);
+	if (i == 0)
 		return ("");
-	while (ft_issemispace(s[i - 1]) == 1)
-	{
-		c_end++;
+	while (ft_issemispace(ptr[i - 1]) == 1)
 		i--;
+	if ((str = ft_strnew(size)) != NULL)
+	{
+		str[size] = '\0';
+		while (size)
+		{
+			str[size - 1] = ptr[size - 1];
+			size--;
+		}
+		return (str);
 	}
-	i = ft_strlen(s) - (c_end + c_begin);
-	str = ft_strnew(i);
-	if (!str)
-		return (NULL);
-	ft_strncpy(str, &(s[c_begin]), i);
-	return (str);
+	return (NULL);
 }

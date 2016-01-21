@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 17:54:39 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/04 21:28:25 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 17:04:30 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char		*ft_strjoin(char const *s1, char const *s2)
 {
 	char		*str;
 
-	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (!str)
-		return (NULL);
-	ft_strncpy(str, s1, ft_strlen(s1));
-	ft_strncpy(str + ft_strlen(s1), s2, ft_strlen(s2));
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	return (str);
+	if ((str = ft_strnew(ft_strlen(s1) + ft_strlen(s2))) != NULL)
+	{
+		ft_strcpy(str, s1);
+		ft_strcat(str, s2);
+		return (str);
+	}
+	return (NULL);
 }

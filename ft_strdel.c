@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:44:04 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/11/28 16:34:07 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:25:48 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void		ft_strdel(char **as)
 {
-	ft_memdel((void **)as);
+	if (as != NULL)
+	{
+		ft_memdel((void **)as);
+		*as = NULL;
+	}
 }

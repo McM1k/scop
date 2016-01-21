@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:40:23 by gboudrie          #+#    #+#             */
-/*   Updated: 2015/12/16 16:58:10 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:27:10 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void		ft_strclr(char *s)
 {
-	s = ft_memset(s, '\0', ft_strlen(s));
+	ft_bzero(s, ft_strlen(s));
 }
