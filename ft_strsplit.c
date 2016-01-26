@@ -6,77 +6,74 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 20:54:26 by gboudrie          #+#    #+#             */
-/*   Updated: 2016/01/21 18:14:20 by gboudrie         ###   ########.fr       */
+/*   Updated: 2016/01/26 19:27:14 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_howmuchrow(const char *s, char c)
-{
-	int		row;
-	int		i;
-
-	row = 0;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			row++;
-			while ((s[i + 1] != c) && (s[i + 1]))
-				i++;
-		}
-		i++;
-	}
-	return (row);
-}
-
-static char		*ft_setptr(char const *s, char c, int l)
+static int		ft_howmuchrow(char const *s, char c)
 {
 	int		i;
 	int		j;
 	int		k;
 
 	i = 0;
-	j = 0;
 	k = 0;
-	while (j < l)
+	while (s[i])
 	{
-		i = k;
-		while (s[i] == c)
+		j = 0;
+		while (s[i] == c && s[i])
 			i++;
-		j++;
-		k = i;
-		while (s[k] != c)
+		while (s[i] != c && s[i])
+		{
+			j++;
+			i++;
+		}
+		if (j)
 			k++;
 	}
-	return ((char *)&s[i]);
+	return (k);
+}
+
+static char		**ft_cutter(char **tab, char const *s, char c)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	k = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i] == c && s[i])
+			i++;
+		while (s[i + j] != c && s[i + j])
+			j++;
+		if (j)
+		{
+			if ((tab[k] = ft_strsub(s, i, j)) == NULL)
+			{
+				ft_memdel((void **)tab);
+				return (NULL);
+			}
+			i = i + j;
+			k++;
+		}
+	}
+	return (tab);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
 	char		**tab;
-	int			i;
-	char		*ptr;
-	int			j;
+	int			row;
 
-	i = 0;
-	if (!(tab = (char **)ft_memalloc((sizeof(*tab)) * ft_howmuchrow(s, c) + 1)))
+	row = ft_howmuchrow(s, c);
+	if (!(tab = ft_memalloc(sizeof(*tab) * (row + 1))))
 		return (NULL);
-	tab[ft_howmuchrow(s, c)] = NULL;
-	while (i < ft_howmuchrow(s, c))
-	{
-		ptr = ft_setptr(s, c, i + 1);
-		if (!(tab[i] = ft_strnew(ft_strlenc(ptr, c))))
-			return (NULL);
-		j = 0;
-		while (j < ft_strlenc(ptr, c))
-		{
-			tab[i][j] = *(ptr + j);
-			j++;
-		}
-		i++;
-	}
+	ft_cutter(tab, s, c);
+	tab[row] = NULL;
 	return (tab);
 }
