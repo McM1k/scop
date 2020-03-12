@@ -56,13 +56,13 @@ PROJ_OBJ =	$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
 
 ################################################################################
 
-all :		    $(EXE)
+all :		 $(EXE)
 
 $(EXE) :        $(PROJ_OBJ)
 	            @$(CC) $(CFLAGS) $(LFLAGS) -lglfw -o $@ $(PROJ_OBJ)
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$(EXE) "$(CLEAR)$(LIG)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c dep
 	            @mkdir -p $(OBJ_DIR) 2> /dev/null || true
 	            @$(CC) $(CFLAGS) $(LFLAGS) -c -o $@ $<
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$< "$(CLEAR)$(LIG)"
@@ -79,9 +79,13 @@ clean :
 fclean :	    clean
 	            @echo "$(CLEAR)$(TRA)$(RED)  Removing Binary $(CLEAR)$(TRA)"
 	            @$(RM) $(EXE)
+		    @rm -rf includes/glad includes/glad.h includes/khrplatform.h includes/KHR srcs/glad.c
 
 re :		    fclean all
 
 .PHONY :	    all, clean, fclean, re
 
 .SILENT :
+
+dep :
+		    sh glad.sh
