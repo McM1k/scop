@@ -6,15 +6,15 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/03/05 19:19:42 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/01 11:56:14 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __HEADER_H__
 # define __HEADER_H__
 
+# include <glad/glad.h>
 # include <GLFW/glfw3.h>
-# include "glad.h"
 
 //window.c
 void		error_callback(int error, const char *description);

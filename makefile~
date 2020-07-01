@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/01 11:53:23 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/03/05 19:23:20 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,8 +32,8 @@ CR_DL =	\xe2\x95\x9a
 # comp
 CC =		clang
 CFLAGS =	-Wall -Wextra -Werror
-LFLAGS =	-Iincludes -I/Users/gboudrie/.brew/include
-GLFLAGS =   -L/Users/gboudrie/.brew/lib -lglfw3
+LFLAGS =	-Iincludes/ -I
+GLFLAGS =   -framework OpenGl
 
 # binaries
 EXE =       scop
@@ -57,10 +57,12 @@ PROJ_OBJ =	$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
 
 ################################################################################
 
+dep :
+
 all :		    $(EXE)
 
 $(EXE) :        $(PROJ_OBJ)
-	            @$(CC) $(CFLAGS) $(LFLAGS) -o $@ $(PROJ_OBJ) $(GLFLAGS)
+	            @$(CC) $(CFLAGS) $(LFLAGS) $(GLFLAGS) -o $@ $(PROJ_OBJ)
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$(EXE) "$(CLEAR)$(LIG)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
