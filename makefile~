@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/02 12:47:26 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/03/05 19:23:20 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -58,8 +58,7 @@ PROJ_OBJ =	$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
 
 all :		 $(EXE)
 
-$(EXE) :        
-				$(PROJ_OBJ)
+$(EXE) :        $(PROJ_OBJ)
 	            @$(CC) $(CFLAGS) $(LFLAGS) -lglfw -o $@ $(PROJ_OBJ)
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$(EXE) "$(CLEAR)$(LIG)"
 
@@ -77,7 +76,7 @@ clean :
 	            @$(RM) $(PROJ_OBJ)
 	            @rmdir $(OBJ_DIR) 2> /dev/null || true
 
-fclean :	    depclean clean
+fclean :	    clean
 	            @echo "$(CLEAR)$(TRA)$(RED)  Removing Binary $(CLEAR)$(TRA)"
 	            @$(RM) $(EXE)
 		    @rm -rf includes/glad includes/glad.h includes/khrplatform.h includes/KHR srcs/glad.c
@@ -90,7 +89,3 @@ re :		    fclean all
 
 dep :
 		    sh glad.sh
-			make -C lib/libft
-
-depclean:
-			make -C lib/libft fclean 
