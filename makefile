@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/02 12:47:26 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/03 14:11:32 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,42 +30,43 @@ CR_DR =	\xe2\x95\x9d
 CR_DL =	\xe2\x95\x9a
 
 # comp
-CC =		clang
-CFLAGS =	-Wall -Wextra -Werror
-LFLAGS =	-Iincludes/ -I
+CC =			clang
+CFLAGS =		-Wall -Wextra #-Werror
+IFLAGS =		-I/Users/gboudrie/.brew/include -Iinc -Ilib
+LFLAGS =		-L/Users/gboudrie/.brew/lib -lglfw -Llib/libft -lft
 
 # binaries
-EXE =       scop
+EXE =			scop
 
 # dir
-SRC_DIR =       srcs
-INC_DIR =       includes
+SRC_DIR =       src
+INC_DIR =       inc
 OBJ_DIR =       obj
 
 # sources
 PROJ_SRC_LIST = main.c \
 				window.c \
-				events.c
+				events.c \
+				glad.c
 
 # objects
 PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)
 
 #paths
-PROJ_SRC =	$(addprefix $(SRC_DIR)/, $(PROJ_SRC_LIST))
-PROJ_OBJ =	$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
+PROJ_SRC =		$(addprefix $(SRC_DIR)/, $(PROJ_SRC_LIST))
+PROJ_OBJ =		$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
 
 ################################################################################
 
-all :		 $(EXE)
+all :		 	dep $(EXE)
 
-$(EXE) :        
-				$(PROJ_OBJ)
-	            @$(CC) $(CFLAGS) $(LFLAGS) -lglfw -o $@ $(PROJ_OBJ)
+$(EXE) :        $(PROJ_OBJ)
+	            @$(CC) $(CFLAGS) $(IFLAGS) -o $@ $(PROJ_OBJ) $(LFLAGS)
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$(EXE) "$(CLEAR)$(LIG)"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c dep
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	            @mkdir -p $(OBJ_DIR) 2> /dev/null || true
-	            @$(CC) $(CFLAGS) $(LFLAGS) -c -o $@ $<
+	            @$(CC) $(CFLAGS) $(IFLAGS) -c -o $@ $<
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$< "$(CLEAR)$(LIG)"
 
 meteo :
@@ -80,7 +81,6 @@ clean :
 fclean :	    depclean clean
 	            @echo "$(CLEAR)$(TRA)$(RED)  Removing Binary $(CLEAR)$(TRA)"
 	            @$(RM) $(EXE)
-		    @rm -rf includes/glad includes/glad.h includes/khrplatform.h includes/KHR srcs/glad.c
 
 re :		    fclean all
 
@@ -93,4 +93,5 @@ dep :
 			make -C lib/libft
 
 depclean:
+			@rm -rf inc/glad inc/glad.h inc/khrplatform.h inc/KHR src/glad.c
 			make -C lib/libft fclean 
