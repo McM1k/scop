@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/03 16:24:39 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/06 16:52:28 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,36 @@ int     main(int ac, char **av)
 {
     (void)ac;
     (void)av;
-    glfwSetErrorCallback(error_callback);
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	GLFWwindow	*window;
+	window = init_window();
+	if (!window) 
+		return(-1);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Scop", NULL, NULL);
-    if (window == NULL)
+	float vertices[] = {-0.5f,-0.5f,0.0f,0.5f,-0.5f,0.0f,0.0f,0.5f,0.0f};
+    unsigned int VBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	unsigned int VAO;
+	glGenVertexArrays(1, &VAO);  
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0); 
+	
+	init_shader_program();
+	
+	while(!glfwWindowShouldClose(window))
     {
-		ft_putendl("Failed to create GLFW window");
-		glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        ft_putendl("Failed to initialize GLAD");
-        return -1;
-    }
-
-    glViewport(0, 0, 800, 600);
-
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetKeyCallback(window, key_callback);
-
-    while(!glfwWindowShouldClose(window))
-    {
-        glfwSwapBuffers(window);
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
+		glfwSwapBuffers(window);
         glfwPollEvents();
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
     }
-
     glfwTerminate();
-
     return(0);
 }

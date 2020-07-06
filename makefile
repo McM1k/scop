@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/03 14:11:32 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/06 16:53:48 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -69,6 +69,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	            @$(CC) $(CFLAGS) $(IFLAGS) -c -o $@ $<
 	            @echo "$(CLEAR)$(LIG)$(BLUE) Compiling "$< "$(CLEAR)$(LIG)"
 
+norm :
+				norminette $(PROJ_SRC)
+
 meteo :
 	            @curl http://wttr.in/Paris
 	            @curl http://wttr.in/Moon
@@ -77,6 +80,7 @@ clean :
 	            @echo "$(CLEAR)$(TRA)$(RED)  Cleaning Object $(CLEAR)$(TRA)"
 	            @$(RM) $(PROJ_OBJ)
 	            @rmdir $(OBJ_DIR) 2> /dev/null || true
+				rm *~ src/*~ inc/*~
 
 fclean :	    depclean clean
 	            @echo "$(CLEAR)$(TRA)$(RED)  Removing Binary $(CLEAR)$(TRA)"
