@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/06 16:53:48 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/07 13:14:47 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,7 +31,7 @@ CR_DL =	\xe2\x95\x9a
 
 # comp
 CC =			clang
-CFLAGS =		-Wall -Wextra #-Werror
+CFLAGS =		-Wall -Wextra -Werror
 IFLAGS =		-I/Users/gboudrie/.brew/include -Iinc -Ilib
 LFLAGS =		-L/Users/gboudrie/.brew/lib -lglfw -Llib/libft -lft
 

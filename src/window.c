@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:59 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/06 16:52:30 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/07 13:14:31 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ GLFWwindow		*init_window()
         return NULL;
     }
 	glViewport(0, 0, 800, 600);
-    glfwSetFramebufferSizeCallback(wndow, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetKeyCallback(window, key_callback);
 	return window;
 }
@@ -60,6 +60,7 @@ unsigned int	init_vertex_shader()
         ft_putendl("vertex shader compilation failed");
         ft_putendl(infoLog);
     }
+	return vertexShader;
 }
 
 unsigned int	init_fragment_shader()
@@ -83,9 +84,10 @@ unsigned int	init_fragment_shader()
 		ft_putendl("fragment shader compilation failed");
 		ft_putendl(infoLog);
     }
+	return fragmentShader;
 }
 
-void		init_shader_program()
+unsigned int	init_shader_program()
 {
 	unsigned int vertexShader = init_vertex_shader();
 	unsigned int fragmentShader = init_fragment_shader();
@@ -104,5 +106,6 @@ void		init_shader_program()
 		ft_putendl(infoLog);
 	}
 	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);  
+	glDeleteShader(fragmentShader);
+	return shaderProgram;
 }

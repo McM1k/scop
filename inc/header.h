@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/06 15:16:43 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/07 11:12:59 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <libft/libft.h>
 
 //window.c
-GLFWwindow	*init_window();
-void		init_shader_program();
+GLFWwindow		*init_window();
+unsigned int	init_shader_program();
 
 //events.c
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);

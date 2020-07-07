@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:07:37 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/03 16:09:30 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/07 14:25:43 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 {
 	(void)scancode;
 	(void)mods;
-	if (key == GLFW_KEY_ESCAPE && action ==GLFW_PRESS) 
-	{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) 
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	}
+	if (key == GLFW_KEY_X && action == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	if (key == GLFW_KEY_X && action == GLFW_RELEASE)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	
 }
