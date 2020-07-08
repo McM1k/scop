@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:59 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/07 13:14:31 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/08 16:29:50 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ unsigned int	init_vertex_shader()
 {
     const char *vertexShaderSource = "#version 410 core\n"
         "layout (location = 0) in vec3 aPos;\n"
+		"layout (location = 1) in vec3 aColor;\n"
+		"out vec3 ourColor;\n"
         "void main()\n"
         "{\n"
-        "    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+        "    gl_Position = vec4(aPos, 1.0);\n"
+		"    ourColor = aColor;\n"
         "}\0";
     unsigned int vertexShader;
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -67,9 +70,10 @@ unsigned int	init_fragment_shader()
 {
 	const char *fragmentShaderSource = "#version 410 core\n"
 		"out vec4 FragColor;\n"
+		"in vec3 ourColor;\n"
 		"void main()\n"
 		"{\n"
-		"    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+		"    FragColor = vec4(ourColor, 1.0);\n"
 		"}\0";
 	unsigned int fragmentShader;
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);

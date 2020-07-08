@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/07 13:14:47 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/08 16:52:41 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -80,7 +80,7 @@ clean :
 	            @echo "$(CLEAR)$(TRA)$(RED)  Cleaning Object $(CLEAR)$(TRA)"
 	            @$(RM) $(PROJ_OBJ)
 	            @rmdir $(OBJ_DIR) 2> /dev/null || true
-				rm *~ src/*~ inc/*~
+#				rm *~ src/*~ inc/*~
 
 fclean :	    depclean clean
 	            @echo "$(CLEAR)$(TRA)$(RED)  Removing Binary $(CLEAR)$(TRA)"

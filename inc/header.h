@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/07 11:12:59 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/08 16:18:44 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <glad.h>
 # include <GLFW/glfw3.h>
 # include <libft/libft.h>
+# include <math.h>
 
 //window.c
 GLFWwindow		*init_window();
