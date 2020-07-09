@@ -1,0 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shader.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/09 14:12:21 by gboudrie          #+#    #+#             */
+/*   Updated: 2020/07/09 14:18:13 by gboudrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "header.h" 
+
+const char	*retrieve_shader_source(char *path)
+{
+	int		fd;
+
+	if ((fd = open(path, O_RDONLY)) == -1)
+		error_callback(-2, "Cannot open shader")
+}
