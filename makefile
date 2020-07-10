@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/09 11:24:30 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/10 14:34:24 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,7 +48,8 @@ PROJ_SRC_LIST = main.c \
 				window.c \
 				events.c \
 				glad.c \
-				shader.c 
+				shader.c \
+				image_reader.c 
 
 # objects
 PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/08 16:18:44 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/09 16:09:37 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,20 @@
 # include <GLFW/glfw3.h>
 # include <libft/libft.h>
 # include <math.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/stat.h>
+
 
 //window.c
 GLFWwindow		*init_window();
-unsigned int	init_shader_program();
 
 //events.c
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void	error_callback(int error, const char *description);
 void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
+
+//shader.c
+unsigned int	init_shader_program();
+
 #endif
