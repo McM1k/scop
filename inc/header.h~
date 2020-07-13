@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/09 16:09:37 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/10 16:57:11 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 
+typedef struct		s_bmp
+{
+//	char			bfType[2];
+//	int				bfSize;
+//	short int		bfReserved1;
+//	short int		bfReserved2;
+	int				bfOffBits; // +10bits
+//	int				biSize;
+	int				biWidth; // +18bits
+	int				biHeight; // +22bits
+//	short int		biPlanes;
+	short int		biBitCount; // +28bits
+//	int				biCompression;
+//	int				biSizeImage;
+//	int				biXPelsPerMeter;
+//	int				biYPelsPerMeter;
+//	int				biClrUsed;
+//	int				biClrImportant;
+}					t_bmp;
+
 
 //window.c
 GLFWwindow		*init_window();
@@ -32,5 +52,8 @@ void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 //shader.c
 unsigned int	init_shader_program();
+
+//image_reader.c
+unsigned char	*get_data_from_bmp(char *path);
 
 #endif
