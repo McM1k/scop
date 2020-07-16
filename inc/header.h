@@ -24,22 +24,23 @@
 
 typedef struct		s_bmp
 {
-//	char			bfType[2];
-//	int				bfSize;
-//	short int		bfReserved1;
-//	short int		bfReserved2;
+	char			bfType[2];
+	int				bfSize;
+	short int		bfReserved1;
+	short int		bfReserved2;
 	int				bfOffBits; // +10bits
-//	int				biSize;
+	int				biSize;
 	int				biWidth; // +18bits
 	int				biHeight; // +22bits
-//	short int		biPlanes;
+	short int		biPlanes;
 	short int		biBitCount; // +28bits
-//	int				biCompression;
-//	int				biSizeImage;
-//	int				biXPelsPerMeter;
-//	int				biYPelsPerMeter;
-//	int				biClrUsed;
-//	int				biClrImportant;
+	int				biCompression;
+	int				biSizeImage;
+	int				biXPelsPerMeter;
+	int				biYPelsPerMeter;
+	int				biClrUsed;
+	int				biClrImportant;
+  char *image;
 }					t_bmp;
 
 

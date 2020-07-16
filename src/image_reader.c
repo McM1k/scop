@@ -17,7 +17,7 @@ t_bmp		*read_bmp(char *path)
 	t_bmp	bmp;
 	int		fd;
 	char	buf_head[54];
-	int		head_size;
+	int		size;
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (NULL);
@@ -25,6 +25,11 @@ t_bmp		*read_bmp(char *path)
 		return (NULL);
 	if (!get_bmp_info(buf_head, &bmp))
 		return (NULL);
+	size = bmp.biWidth * bmp.biHeight * bmp.biBitCount;
+	bmp.image = ft_memalloc(size + 1);
+	if ((ret = read(fd, bmp.image, size)) == -1)
+	  return (NULL);
+	bmp.image[size] = '\0';
 	if (close(fd) == -1)
 		return (NULL);
 	return (&bmp);
@@ -32,13 +37,13 @@ t_bmp		*read_bmp(char *path)
 
 t_bmp		*get_bmp_info(char *header, t_bmp *bmp)
 {
-	ft_memcpy(*bmp, header, 54);
-	if (bmp.bfType[0] != 'B' && bmp.bfType[1] != 'M')
+	ft_memcpy(bmp, header, 54);
+	if (bmp->bfType[0] != 'B' && bmp->bfType[1] != 'M')
 	{
 		error_callback(-101, "not a BM bitmap image");
 		return (NULL);
 	}
-	if (bmp.bfOffBits != 54)
+	if (bmp->bfOffBits != 54)
 	{
 		error_callback(-102, "bad offBit");
 		return (NULL);
