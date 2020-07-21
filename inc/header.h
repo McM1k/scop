@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/20 12:14:58 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:52:16 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 # include <sys/stat.h>
 # include <stdio.h>
 
-typedef struct		s_bmp
+typedef struct		  __attribute__((packed)) s_bmp
 {
-	char			bfType[2];
+	char			bfType1;
+	char			bfType2;
 	int				bfSize;
 	short int		bfReserved1;
 	short int		bfReserved2;
@@ -40,7 +41,7 @@ typedef struct		s_bmp
 	int				biYPelsPerMeter;
 	int				biClrUsed;
 	int				biClrImportant;
-	unsigned char	*image;
+	unsigned char	*image __attribute__((aligned(8)));
 }					t_bmp;
 
 
@@ -57,5 +58,10 @@ unsigned int	init_shader_program();
 
 //image_reader.c
 t_bmp			*read_bmp(char *path);
+
+//transform.c
+vec4			rotate(vec4 vec, vec4 axis, double angle);
+vec4			translate(vec4 vec, vec4 trans);
+vec4			scale(vec4 vec, vec4 scale);
 
 #endif

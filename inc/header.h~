@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/13 14:11:24 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/20 12:14:58 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_bmp
 	int				biYPelsPerMeter;
 	int				biClrUsed;
 	int				biClrImportant;
-  char *image;
+	unsigned char	*image;
 }					t_bmp;
 
 
@@ -56,6 +56,6 @@ void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 unsigned int	init_shader_program();
 
 //image_reader.c
-unsigned char	*get_data_from_bmp(char *path);
+t_bmp			*read_bmp(char *path);
 
 #endif
