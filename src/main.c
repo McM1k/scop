@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/20 12:19:27 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/22 16:58:06 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ int     main(int ac, char **av)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bmp->biWidth, bmp->biHeight,
 				 0, GL_RGB, GL_UNSIGNED_BYTE, bmp->image);
 	glGenerateMipmap(GL_TEXTURE_2D);
+	
+	t_mat mat;
+	mat = rotate({0.0; 0.0; 1.0}, (float)glfwGetTime());
 
+	float	trans[16];
+	get_mat_as_tab(mat, trans);
 
 	unsigned int EBO;
 	glGenBuffers(1, &EBO);
@@ -81,7 +86,8 @@ int     main(int ac, char **av)
 		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 		//glUseProgram(shaderProgram);
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
+		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		//glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

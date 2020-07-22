@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/21 14:33:33 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/22 13:13:41 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_bmp		*read_bmp(char *path)
 	size = bmp.biWidth * bmp.biHeight * bmp.biBitCount;
 	bmp.image = ft_memalloc(size + 1);
 	if ((ret = read(fd, bmp.image, size)) == -1)
-	  return (NULL);
+		return (NULL);
 	bmp.image[size] = '\0';
 	if (close(fd) == -1)
 		return (NULL);
