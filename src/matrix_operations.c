@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:19:09 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/22 16:16:20 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/23 11:24:04 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,4 @@ t_mat	multiply_mat_mat(t_mat m1, t_mat m2)
 		i++;
 	}
 	return (res);
-}
-
-void	get_vec_as_tab(t_vec v, float *t)
-{
-	t[0] = v.x;
-	t[1] = v.y;
-	t[2] = v.z;
-	t[3] = v.w;
-}
-
-void	get_mat_as_tab(t_mat m, float *t)
-{
-	get_vec_as_tab(m.col[0], &(t[0]));
-	get_vec_as_tab(m.col[1], &(t[4]));
-	get_vec_as_tab(m.col[2], &(t[8]));
-	get_vec_as_tab(m.col[3], &(t[12]));
 }

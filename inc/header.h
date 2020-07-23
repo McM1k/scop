@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/22 16:15:02 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/23 11:28:24 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ unsigned int	init_shader_program();
 //image_reader.c
 t_bmp			*read_bmp(char *path);
 
-//transform.c
+//matrix_transformations.c
 t_mat			rotate(t_vec r, float angle);
 t_mat			translate(t_vec t);
 t_mat			scale(t_vec s);
@@ -82,7 +82,10 @@ t_mat			identity(void);
 //matrix_operations.c
 t_vec			multiply_mat_vec(t_mat m, t_vec v);
 t_mat			multiply_mat_mat(t_mat m1, t_mat m2);
+
+//matrix_utils.c
 void			get_vec_as_tab(t_vec v, float *t);
 void			get_mat_as_tab(t_mat m, float *t);
+t_vec			set_vec(float x, float y, float z, float w);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/22 16:04:19 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/07/23 11:25:26 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,8 +50,9 @@ PROJ_SRC_LIST = main.c \
 				glad.c \
 				shader.c \
 				image_reader.c \
-				transform.c \
-				matrix_operations.c
+				matrix_transformations.c \
+				matrix_operations.c \
+				matrix_utils.c
 
 # objects
 PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)
