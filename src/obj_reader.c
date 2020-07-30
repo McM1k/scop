@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/30 16:37:20 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/30 16:47:31 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void		fill_obj_data(t_obj *ptr, int v, int f, int tri)
 {
+	int		i;
+
+	i = 0;
 	
 }
 
