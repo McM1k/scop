@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/28 14:47:48 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 16:35:27 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct		s_vec
 {
@@ -39,6 +40,7 @@ typedef struct		s_obj
 {
 	float			*vertices;
 	int				*indices;
+	int				triangles;
 	int				smooth;
 }					t_obj;
 
@@ -81,7 +83,7 @@ unsigned int	init_shader_program();
 t_bmp			*read_bmp(char *path);
 
 //obj_reader.c
-t_obj			*read_obj(char *path);
+t_obj			*get_obj(char *path);
 
 //matrix_transformations.c
 t_mat			rotate(t_vec r, float angle);

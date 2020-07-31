@@ -6,18 +6,58 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/30 16:47:31 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 16:37:13 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+void		triangulate(t_obj *ptr, char **split, int *tri)
+{
+	int		f_size;
 
-void		fill_obj_data(t_obj *ptr, int v, int f, int tri)
+	f_size = 0;
+	while (split[f_size])
+		f_size++;
+	while (f_size > 3)
+	{
+		ptr->vertices[((*tri) * 3) + f_size - 3]
+			= strtof(split[f_size - 3], NULL);
+		ptr->vertices[((*tri) * 3) + f_size - 2]
+			= strtof(split[f_size - 2], NULL);  
+		ptr->vertices[((*tri) * 3) + f_size - 1]
+			= strtof(split[f_size - 1], NULL);
+		f_size--;
+		(*tri)++;
+	}
+}
+
+void		fill_obj_data(t_obj *ptr, char **lines)
 {
 	int		i;
+	char	**split;
+	int		v;
+	int		tri;
 
 	i = 0;
-	
+	v = 0;
+	tri = 0;
+	while (lines[i])
+	{
+		split = ft_strsplit(lines[i], ' ');
+		if (split[0][0] == 'v')
+		{
+			ptr->vertices[v] = strtof(split[1], NULL);
+			ptr->vertices[v+1] = strtof(split[2], NULL);
+			ptr->vertices[v+2] = strtof(split[3], NULL);
+			v++;
+		}
+		else if (split[0][0] == 'f')
+			triangulate(ptr, split, &tri);
+		else if (split[0][0] == 's' && ft_strcmp(split[1], "off") == 0)
+			ptr->smooth = 0;
+		ft_splitdel((void ***)&split);
+		i++;
+	}
 }
 
 void		obj_malloc(t_obj *ptr, char **lines)
@@ -31,20 +71,21 @@ void		obj_malloc(t_obj *ptr, char **lines)
 	v_count = 0;
 	f_count = 0;
 	tri_count = 0;
-	while (line_ptr)
+	while (*line_ptr)
 	{
 		if ((*line_ptr)[0] == 'v')
 			v_count++;
 		if ((*line_ptr)[0] == 'f')
 		{
 			f_count++;
-			tri_count = ft_char_count(*line_ptr, '0') - 2;
+			tri_count += ft_char_count(*line_ptr, ' ') - 2;
 		}
 		line_ptr++;
 	}
+	ptr->triangles = tri_count;
 	ptr->vertices = ft_memalloc(sizeof(float) * 3 * v_count);
 	ptr->indices = ft_memalloc(sizeof(int) * 3 * tri_count);
-	fill_obj_data(ptr, v_count, f_count, tri_count);
+	fill_obj_data(ptr, lines);
 }
 
 t_obj		*cut_lines(char *src)
@@ -53,9 +94,10 @@ t_obj		*cut_lines(char *src)
 	char	**lines;
 	
 	ptr = ft_memalloc(sizeof(t_obj));
+	ptr->smooth = 1;
 	lines = ft_strsplit(src, '\n');
 	obj_malloc(ptr, lines);
-	ft_splitdel(&lines);
+	ft_splitdel((void ***)&lines);
 	return (ptr);
 }
 
@@ -77,4 +119,3 @@ t_obj		*get_obj(char *path)
 	close(fd);
 	return (cut_lines(src));
 }
-

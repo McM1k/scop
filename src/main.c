@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/30 14:06:45 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 16:38:33 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,11 @@ int     main(int ac, char **av)
 	window = init_window();
 	if (!window) 
 		return(-1);
-	
-	float vertices[] = {
-		// positions          // colors           // texture coords
-		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-		-0.5f, -0.4f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-
-		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-		0.5f, -0.4f, -0.5f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f,    // top left 
-
-		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-		-0.5f, -0.4f, 0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // bottom left
-		0.5f, -0.4f, -0.5f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f,    // top left 
-
-		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // bottom right
-		-0.5f, -0.4f, 0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f,   // bottom left
-		0.5f, -0.4f, -0.5f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f    // top left 
-	};
-/*	unsigned int indices[] = {  // note that we start from 0!
-		0, 1, 2,
-		1, 2, 3,
-		2, 3, 0,
-		3, 0, 1
-	};
-*/
+	ft_putendl("jeej");
+	t_obj	*obj = get_obj("res/42.obj");
+	ft_putendl("jeej");
 	t_bmp *bmp = read_bmp("res/unicorn.bmp");
+	ft_putendl("jeej");
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -59,12 +37,14 @@ int     main(int ac, char **av)
 	glEnable(GL_DEPTH_TEST);
 	
 	t_vec vec;
+	t_vec sca;
 	t_mat mat;
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
+	sca = set_vec(0.2, 0.2, 0.2, 0.0);
 	float	trans[16];
 
-//	unsigned int EBO;
-//	glGenBuffers(1, &EBO);
+	unsigned int EBO;
+	glGenBuffers(1, &EBO);
 	unsigned int VBO;
     glGenBuffers(1, &VBO);
     unsigned int VAO;
@@ -72,9 +52,11 @@ int     main(int ac, char **av)
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(obj->vertices),
+				 obj->vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(obj->indices),
+				 obj->indices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
 						  (void*)0);
 	glEnableVertexAttribArray(0);
@@ -88,12 +70,13 @@ int     main(int ac, char **av)
 		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 		mat = rotate(vec, (float)glfwGetTime());
+		mat = multiply_mat_mat(mat, scale(sca));
 		get_mat_as_tab(mat, trans);
 		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, obj->triangles * 3, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);		
 		glfwSwapBuffers(window);
         glfwPollEvents();
