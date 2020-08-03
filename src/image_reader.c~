@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/03 16:00:57 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 14:50:04 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_bmp		*get_bmp_info(char *header, t_bmp *bmp)
 		error_callback(-101, "not a BM bitmap image");
 		return (NULL);
 	}
+	ft_putnbr(bmp->bfOffBits);
 	if (bmp->bfOffBits != 54)
 	{
 		error_callback(-102, "bad offBit");

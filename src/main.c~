@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/03 14:45:18 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 16:38:33 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ int     main(int ac, char **av)
 	window = init_window();
 	if (!window) 
 		return(-1);
+	ft_putendl("jeej");
 	t_obj	*obj = get_obj("res/42.obj");
-	t_bmp *bmp = read_bmp("res/vivlevan.bmp");
+	ft_putendl("jeej");
+	t_bmp *bmp = read_bmp("res/unicorn.bmp");
+	ft_putendl("jeej");
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
