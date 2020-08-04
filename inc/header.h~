@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/04 12:05:31 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/31 16:35:27 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct		s_mat
 typedef struct		s_obj
 {
 	float			*vertices;
-	unsigned int	*indices;
+	int				*indices;
 	int				triangles;
 	int				smooth;
 }					t_obj;

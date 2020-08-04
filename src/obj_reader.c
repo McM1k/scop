@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/03 14:02:37 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/04 16:32:10 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void		triangulate(t_obj *ptr, char **split, int *tri)
 		f_size++;
 	while (f_size > 3)
 	{
-		ptr->indices[(*tri) + f_size - 3] = ft_atoi(split[f_size - 3]);
-		ptr->indices[(*tri) + f_size - 2] = ft_atoi(split[f_size - 2]);  
-		ptr->indices[(*tri) + f_size - 1] = ft_atoi(split[f_size - 1]);
+		ptr->indices[(*tri) + f_size - 3]
+			= (unsigned int)ft_atoi(split[f_size - 3]);
+		ptr->indices[(*tri) + f_size - 2]
+			= (unsigned int)ft_atoi(split[f_size - 2]);  
+		ptr->indices[(*tri) + f_size - 1]
+			= (unsigned int)ft_atoi(split[f_size - 1]);
 		f_size--;
 		(*tri)+=3;
 	}
@@ -40,7 +43,7 @@ void		fill_obj_data(t_obj *ptr, char **lines)
 	tri = 0;
 	while (lines[i])
 	{
-		split = ft_strsplit(lines[i], ' ');
+	split = ft_strsplit(lines[i], ' ');
 		if (split[0][0] == 'v')
 		{
 			ptr->vertices[v] = strtof(split[1], NULL);
@@ -52,7 +55,7 @@ void		fill_obj_data(t_obj *ptr, char **lines)
 			triangulate(ptr, split, &tri);
 		else if (split[0][0] == 's' && ft_strcmp(split[1], "off") == 0)
 			ptr->smooth = 0;
-		ft_splitdel((void ***)&split);
+		ft_splitdel((void **)split);
 		i++;
 	}
 }
@@ -89,13 +92,13 @@ t_obj		*cut_lines(char *src)
 {
 	t_obj	*ptr;
 	char	**lines;
-	
+
 	ptr = ft_memalloc(sizeof(t_obj));
 	ptr->smooth = 1;
 	lines = ft_strsplit(src, '\n');
 	ft_memdel((void **)&src);
 	obj_malloc(ptr, lines);
-	ft_splitdel((void ***)&lines);
+	ft_splitdel((void **)lines);
 	return (ptr);
 }
 

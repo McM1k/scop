@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/03 14:45:18 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/04 16:46:26 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,30 @@ int     main(int ac, char **av)
 	window = init_window();
 	if (!window) 
 		return(-1);
+	/*
+	float vertices[] = {
+		0.5f,  0.5f, 0.0f,  // top right
+		0.5f, -0.5f, 0.0f,  // bottom right
+		-0.5f, -0.5f, 0.0f,  // bottom left
+		-0.5f,  0.5f, 0.0f   // top left 
+	};
+	unsigned int indices[] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
+	};  
+*/
 	t_obj	*obj = get_obj("res/42.obj");
+
+	int i = 0;
+	while (i < obj->triangles * 3)
+	{
+		ft_putnbr(obj->indices[i]);
+		ft_putchar(' ');
+		i++;
+		if (i % 3 == 0)
+			ft_putendl("");
+	}
+
 	t_bmp *bmp = read_bmp("res/vivlevan.bmp");
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -37,7 +60,7 @@ int     main(int ac, char **av)
 	t_vec sca;
 	t_mat mat;
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
-	sca = set_vec(0.2, 0.2, 0.2, 0.0);
+	sca = set_vec(0.04, 0.04, 0.04, 0.0);
 	float	trans[16];
 
 	unsigned int EBO;
@@ -73,7 +96,7 @@ int     main(int ac, char **av)
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, obj->triangles * 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, obj->triangles, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);		
 		glfwSwapBuffers(window);
         glfwPollEvents();
@@ -81,8 +104,11 @@ int     main(int ac, char **av)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
-	ft_memdel((void **)(&(bmp->image)));
-	ft_memdel((void **)(&bmp));
+	ft_memdel((void **)&(bmp->image));
+	ft_memdel((void **)&bmp);
+	ft_memdel((void **)&(obj->vertices));
+	ft_memdel((void **)&(obj->indices));
+	ft_memdel((void **)&obj);
     glfwTerminate();
     return(0);
 }

@@ -6,24 +6,27 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 13:25:36 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/04 16:31:46 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/04 14:12:35 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_splitdel(void **split)
+void	ft_splitdel(void ***split)
 {
 	void	**ptr;
 
-	ptr = split;
+	ptr = *split;
 	while (*ptr)
 	{
+		ft_putendl("caca");
+		//ft_memdel(ptr);
 		free(*ptr);
 		*ptr = NULL;
 		ptr++;
 	}	
+		ft_putendl("prout");
 	free(*split);
 	*split =  NULL;
 }

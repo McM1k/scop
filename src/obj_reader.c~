@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/07/31 16:37:13 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/04 14:04:12 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void		triangulate(t_obj *ptr, char **split, int *tri)
 		f_size++;
 	while (f_size > 3)
 	{
-		ptr->vertices[((*tri) * 3) + f_size - 3]
-			= strtof(split[f_size - 3], NULL);
-		ptr->vertices[((*tri) * 3) + f_size - 2]
-			= strtof(split[f_size - 2], NULL);  
-		ptr->vertices[((*tri) * 3) + f_size - 1]
-			= strtof(split[f_size - 1], NULL);
+		ptr->indices[(*tri) + f_size - 3]
+			= (unsigned int)ft_atoi(split[f_size - 3]);
+		ptr->indices[(*tri) + f_size - 2]
+			= (unsigned int)ft_atoi(split[f_size - 2]);  
+		ptr->indices[(*tri) + f_size - 1]
+			= (unsigned int)ft_atoi(split[f_size - 1]);
 		f_size--;
-		(*tri)++;
+		(*tri)+=3;
 	}
 }
 
@@ -43,21 +43,24 @@ void		fill_obj_data(t_obj *ptr, char **lines)
 	tri = 0;
 	while (lines[i])
 	{
-		split = ft_strsplit(lines[i], ' ');
+		ft_putendl("a");
+	split = ft_strsplit(lines[i], ' ');
 		if (split[0][0] == 'v')
 		{
 			ptr->vertices[v] = strtof(split[1], NULL);
 			ptr->vertices[v+1] = strtof(split[2], NULL);
 			ptr->vertices[v+2] = strtof(split[3], NULL);
-			v++;
+			v+=3;
 		}
 		else if (split[0][0] == 'f')
 			triangulate(ptr, split, &tri);
 		else if (split[0][0] == 's' && ft_strcmp(split[1], "off") == 0)
 			ptr->smooth = 0;
+	ft_putendl("u");
 		ft_splitdel((void ***)&split);
 		i++;
 	}
+	ft_putendl("suus");
 }
 
 void		obj_malloc(t_obj *ptr, char **lines)
@@ -92,10 +95,11 @@ t_obj		*cut_lines(char *src)
 {
 	t_obj	*ptr;
 	char	**lines;
-	
+
 	ptr = ft_memalloc(sizeof(t_obj));
 	ptr->smooth = 1;
 	lines = ft_strsplit(src, '\n');
+	ft_memdel((void **)&src);
 	obj_malloc(ptr, lines);
 	ft_splitdel((void ***)&lines);
 	return (ptr);
