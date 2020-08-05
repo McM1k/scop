@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/04 16:32:10 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/05 16:50:40 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void		triangulate(t_obj *ptr, char **split, int *tri)
 		f_size++;
 	while (f_size > 3)
 	{
-		ptr->indices[(*tri) + f_size - 3]
+		ptr->indices[(*tri)]
 			= (unsigned int)ft_atoi(split[f_size - 3]);
-		ptr->indices[(*tri) + f_size - 2]
+		ptr->indices[(*tri) + 1]
 			= (unsigned int)ft_atoi(split[f_size - 2]);  
-		ptr->indices[(*tri) + f_size - 1]
+		ptr->indices[(*tri) + 2]
 			= (unsigned int)ft_atoi(split[f_size - 1]);
 		f_size--;
-		(*tri)+=3;
+		(*tri) += 3;
 	}
 }
 
