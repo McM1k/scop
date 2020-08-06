@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/04 14:29:42 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/06 14:05:28 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,18 @@ int     main(int ac, char **av)
 		1, 2, 3    // second triangle
 	};  
 */
-	ft_putendl("jeej");
 	t_obj	*obj = get_obj("res/42.obj");
-	ft_putendl("jeej");
+
+	int i = 0;
+	while (i < obj->triangles * 3)
+	{
+		ft_putnbr(obj->indices[i]);
+		ft_putchar(' ');
+		i++;
+		if (i % 3 == 0)
+			ft_putendl("");
+	}
+
 	t_bmp *bmp = read_bmp("res/vivlevan.bmp");
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -50,9 +59,8 @@ int     main(int ac, char **av)
 	t_vec vec;
 	t_vec sca;
 	t_mat mat;
-	ft_putendl("jeej");
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
-	sca = set_vec(0.04, 0.04, 0.04, 0.0);
+	sca = set_vec(0.4, 0.4, 0.4, 0.0);
 	float	trans[16];
 
 	unsigned int EBO;
@@ -64,10 +72,10 @@ int     main(int ac, char **av)
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(obj->vertices),
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * obj->vertices_number,
 				 obj->vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(obj->indices),
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * 3 * obj->triangles,
 				 obj->indices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
 						  (void*)0);
@@ -84,23 +92,17 @@ int     main(int ac, char **av)
 		mat = rotate(vec, (float)glfwGetTime());
 		mat = multiply_mat_mat(mat, scale(sca));
 		get_mat_as_tab(mat, trans);
-	ft_putendl("1");
 		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, obj->triangles, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, obj->triangles * 3, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);		
-	ft_putendl("2");
 		glfwSwapBuffers(window);
-	ft_putendl("3");
         glfwPollEvents();
-	ft_putendl("4");
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	ft_putendl("5");
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	ft_putendl("6");
     }
 	ft_memdel((void **)&(bmp->image));
 	ft_memdel((void **)&bmp);

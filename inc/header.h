@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/04 12:05:31 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/06 14:04:46 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_obj
 {
 	float			*vertices;
 	unsigned int	*indices;
+	int				vertices_number;
 	int				triangles;
 	int				smooth;
 }					t_obj;

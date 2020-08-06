@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/05 16:50:40 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/06 16:38:16 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 void		triangulate(t_obj *ptr, char **split, int *tri)
 {
 	int		f_size;
+	int		i;
 
 	f_size = 0;
+	i = 0;
 	while (split[f_size])
 		f_size++;
-	while (f_size > 3)
+	while (i < f_size - 3)
 	{
-		ptr->indices[(*tri)]
-			= (unsigned int)ft_atoi(split[f_size - 3]);
-		ptr->indices[(*tri) + 1]
-			= (unsigned int)ft_atoi(split[f_size - 2]);  
-		ptr->indices[(*tri) + 2]
-			= (unsigned int)ft_atoi(split[f_size - 1]);
-		f_size--;
+		ptr->indices[(*tri)] = (unsigned int)ft_atoi(split[1]) - 1;
+		ptr->indices[(*tri) + 1] = (unsigned int)ft_atoi(split[i + 2]) - 1;  
+		ptr->indices[(*tri) + 2] = (unsigned int)ft_atoi(split[i + 3]) - 1;
+		i++;
 		(*tri) += 3;
 	}
 }
@@ -82,6 +81,7 @@ void		obj_malloc(t_obj *ptr, char **lines)
 		}
 		line_ptr++;
 	}
+	ptr->vertices_number = v_count * 3;
 	ptr->triangles = tri_count;
 	ptr->vertices = ft_memalloc(sizeof(float) * 3 * v_count);
 	ptr->indices = ft_memalloc(sizeof(int) * 3 * tri_count);

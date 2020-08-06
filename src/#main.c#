@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/06 16:38:37 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/06 14:05:28 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int     main(int ac, char **av)
 	t_vec sca;
 	t_mat mat;
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
-	sca = set_vec(0.2, 0.2, 0.2, 0.0);
+	sca = set_vec(0.4, 0.4, 0.4, 0.0);
 	float	trans[16];
 
 	unsigned int EBO;
@@ -96,7 +96,7 @@ int     main(int ac, char **av)
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, obj->triangles * 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLE_STRIP, obj->triangles * 3, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);		
 		glfwSwapBuffers(window);
         glfwPollEvents();
