@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/06 16:38:37 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/25 16:35:28 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int     main(int ac, char **av)
 	t_vec sca;
 	t_mat mat;
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
-	sca = set_vec(0.2, 0.2, 0.2, 0.0);
+	sca = init_size(*obj);
 	float	trans[16];
 
 	unsigned int EBO;
@@ -89,7 +89,8 @@ int     main(int ac, char **av)
 		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
 		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-		mat = rotate(vec, (float)glfwGetTime());
+		mat = translate(init_axis(*obj));
+		mat = multiply_mat_mat(mat, rotate(vec, (float)glfwGetTime()));
 		mat = multiply_mat_mat(mat, scale(sca));
 		get_mat_as_tab(mat, trans);
 		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");

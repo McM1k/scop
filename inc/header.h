@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/06 14:04:46 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/25 15:17:00 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,13 @@ t_mat			multiply_mat_mat(t_mat m1, t_mat m2);
 void			get_vec_as_tab(t_vec v, float *t);
 void			get_mat_as_tab(t_mat m, float *t);
 t_vec			set_vec(float x, float y, float z, float w);
+
+//init.c
+t_vec			init_axis(t_obj obj);
+t_vec			init_size(t_obj obj);
+
+//utils.c
+t_vec			get_mins(t_obj obj);
+t_vec			get_maxs(t_obj obj);
 
 #endif
