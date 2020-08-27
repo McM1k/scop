@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:59 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:26:13 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/09 14:52:42 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h"
+#include "header.h"
  
 GLFWwindow		*init_window()
 {

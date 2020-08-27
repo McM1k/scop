@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:07:37 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:24:29 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/07 14:25:43 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h"
+#include "header.h"
 
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {

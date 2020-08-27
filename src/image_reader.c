@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/03 16:00:57 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/27 14:24:43 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "scop.h"
 
 t_bmp		*get_bmp_info(char *header, t_bmp *bmp)
 {

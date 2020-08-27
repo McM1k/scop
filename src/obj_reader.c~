@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/06 14:47:53 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/27 14:24:06 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "scop.h"
 void		triangulate(t_obj *ptr, char **split, int *tri)
 {
 	int		f_size;
@@ -22,7 +22,7 @@ void		triangulate(t_obj *ptr, char **split, int *tri)
 		f_size++;
 	while (i < f_size - 3)
 	{
-		ptr->indices[(*tri)] = (unsigned int)ft_atoi(split[i + 1]) - 1;
+		ptr->indices[(*tri)] = (unsigned int)ft_atoi(split[1]) - 1;
 		ptr->indices[(*tri) + 1] = (unsigned int)ft_atoi(split[i + 2]) - 1;  
 		ptr->indices[(*tri) + 2] = (unsigned int)ft_atoi(split[i + 3]) - 1;
 		i++;
@@ -99,6 +99,7 @@ t_obj		*cut_lines(char *src)
 	ft_memdel((void **)&src);
 	obj_malloc(ptr, lines);
 	ft_splitdel((void **)lines);
+	ptr->data = NULL;
 	return (ptr);
 }
 

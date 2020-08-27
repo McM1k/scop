@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/07/28 12:03:33 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/08/25 16:36:16 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -53,7 +53,9 @@ PROJ_SRC_LIST = main.c \
 				obj_reader.c \
 				matrix_transformations.c \
 				matrix_operations.c \
-				matrix_utils.c
+				matrix_utils.c \
+				init.c \
+				utils.c
 
 # objects
 PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)

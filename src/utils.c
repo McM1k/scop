@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:32:47 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/25 15:02:38 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/27 14:26:03 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "scop.h"
 
 t_vec	get_mins(t_obj obj)
 {

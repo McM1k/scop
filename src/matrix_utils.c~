@@ -6,11 +6,11 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 11:22:47 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:25:34 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/07/23 11:27:20 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h"
+#include "header.h"
 
 void    get_vec_as_tab(t_vec v, float *t)
 {
