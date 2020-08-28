@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 18:04:05 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/28 14:25:27 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int     main(int ac, char **av)
 {
-    (void)ac;
-    (void)av;
-	GLFWwindow	*window;
+	if (ac != 2)
+		return (-1);
+   	GLFWwindow	*window;
 	window = init_window();
 	if (!window) 
 		return(-1);
-
-	t_obj	*obj = get_obj("res/42.obj");
-
+	t_obj	*obj;
+	if (!(obj = get_obj(av[1])))
+		return(-1);
+	
 	int i = 0;
 	while (i < obj->triangles * 3)
 	{

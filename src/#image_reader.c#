@@ -6,11 +6,28 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:24:43 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/28 14:59:09 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
+__attribute__((unused))
+void		rbg_to_rgb(t_bmp *ptr, int size)
+{
+	int		i;
+	unsigned char	tmp;
+	
+	i = 0;
+	while (i < size)
+	{
+		tmp = ptr->image[i+1];
+		ptr->image[i+1] = ptr->image[i + 2];
+		ptr->image[i+2] = tmp;
+		i+=3;
+	}
+}
+
+
 
 t_bmp		*get_bmp_info(char *header, t_bmp *bmp)
 {
@@ -44,11 +61,12 @@ t_bmp		*read_bmp(char *path)
 		return (NULL);
 	if (!get_bmp_info(buf_head, &bmp))
 		return (NULL);
-	size = bmp.biWidth * bmp.biHeight * bmp.biBitCount;
-	bmp.image = ft_memalloc(size + 1);
+	size = bmp.biWidth * bmp.biHeight * bmp.biBitCount / 8;
+	ft_putnbr((int)bmp.biBitCount);
+	bmp.image = ft_memalloc(size);
 	if ((ret = read(fd, bmp.image, size)) == -1)
 		return (NULL);
-	bmp.image[size] = '\0';
+//	bgr_to_rgb(&bmp, size);
 	if (close(fd) == -1)
 		return (NULL);
 	ptr = ft_memalloc(sizeof(t_bmp));
