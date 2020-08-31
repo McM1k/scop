@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 16:25:33 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/31 17:14:42 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,15 @@ t_mat			translate(t_vec t);
 t_mat			scale(t_vec s);
 t_mat			identity(void);
 
+//matrix_mvp.c
+t_mat			get_model_matrix(t_mat t, t_mat r, t_mat s);
+t_mat			get_view_matrix(t_mat t, t_mat r, t_mat s);
+t_mat			get_perspective_matrix(float width, float height, float fov);
+t_mat			get_mvp_matrix(t_mat m, t_mat v, t_mat p);
+
 //matrix_operations.c
+t_mat			minus_matrix(t_mat p);
+t_mat			div_matrix(t_mat m);
 t_vec			multiply_mat_vec(t_mat m, t_vec v);
 t_mat			multiply_mat_mat(t_mat m1, t_mat m2);
 
@@ -103,7 +111,7 @@ void			get_mat_as_tab(t_mat m, float *t);
 t_vec			set_vec(float x, float y, float z, float w);
 
 //init.c
-t_vec			init_axis(t_obj obj);
+t_vec			init_center(t_obj obj);
 t_vec			init_size(t_obj obj);
 
 //utils.c

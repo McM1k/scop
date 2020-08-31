@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_mvp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/31 14:21:53 by gboudrie          #+#    #+#             */
+/*   Updated: 2020/08/31 14:28:10 by gboudrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "scop.h"
+
+t_mat	get_model_matrix(t_mat t, t_mat r, t_mat s)
+{
+	t_mat	m;
+
+	m = identity();
+	m = multiply_mat_mat(s, m);
+	m = multiply_mat_mat(r, m);
+	m = multiply_mat_mat(t, m);
+	return (m);
+}

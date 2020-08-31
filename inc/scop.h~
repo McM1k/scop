@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:23:09 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/27 16:25:33 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_mat
 
 typedef struct		s_obj
 {
+	float			*data;
 	float			*vertices;
 	unsigned int	*indices;
 	int				vertices_number;
@@ -108,5 +109,8 @@ t_vec			init_size(t_obj obj);
 //utils.c
 t_vec			get_mins(t_obj obj);
 t_vec			get_maxs(t_obj obj);
+
+//textures.c
+void			get_obj_data(t_obj *ptr);
 
 #endif

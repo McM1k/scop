@@ -6,11 +6,43 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:19:09 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:25:10 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/31 17:19:55 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
+
+t_mat   minus_matrix(t_mat p)
+{
+    t_mat   m;
+    int    i;
+
+    i =0;
+    while (i < 4)
+    {
+        m.col[i].x = - p.col[i].x;
+        m.col[i].y = - p.col[i].y;
+        m.col[i].z = - p.col[i].z;
+        i++;
+    }
+    return (m);
+}
+
+t_mat   div_matrix(t_mat m)
+{
+    t_mat   d;
+    int     i;
+
+    i = 0;
+    while (i < 4)
+    {
+        d.col[i].x = 1 / m.col[i].x;
+        d.col[i].y = 1 / m.col[i].y;
+        d.col[i].z = 1 / m.col[i].z;
+        i++;
+    }
+    return (d);
+}
 
 t_vec	multiply_mat_vec(t_mat m, t_vec v)
 {

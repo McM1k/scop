@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/28 14:52:32 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/31 18:26:26 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ int     main(int ac, char **av)
 				 0, GL_RGB, GL_UNSIGNED_BYTE, bmp->image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
-	
-	t_vec vec;
-	t_vec sca;
-	t_mat mat;
-	vec = set_vec(0.0, 1.0, 0.0, 0.0);
-	sca = set_vec(1.0, 1.0, 1.0, 1.0);
+
 	float	trans[16];
 
 	unsigned int EBO;
@@ -66,17 +61,26 @@ int     main(int ac, char **av)
 	glEnableVertexAttribArray(1);
 
 	unsigned int shaderProgram = init_shader_program();
-	
+
+	t_vec vec;
+	vec = set_vec(0.0, 1.0, 0.0, 0.0);
+	t_mat	t = translate(init_center(*obj));
+	t_mat	s = scale(init_size(*obj));
+	t_mat	r;
+	t_mat	m, v, p;
+
 	while(!glfwWindowShouldClose(window))
     {
 		float timeValue = glfwGetTime();
 		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
 		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-		mat = translate(init_axis(*obj));
-		mat = multiply_mat_mat(mat, rotate(vec, (float)glfwGetTime()));
-		mat = multiply_mat_mat(mat, scale(sca));
-		get_mat_as_tab(mat, trans);
+		r = rotate(vec, (float)glfwGetTime());
+		m = get_model_matrix(t, r, s);
+		v = get_view_matrix(identity(), identity(), identity());
+		p = get_perspective_matrix(800, 600, 90);
+		get_mat_as_tab(get_mvp_matrix(m, identity(), p), trans);
+//get_mat_as_tab(get_mvp_matrix(m, v, identity()), trans);
 		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);

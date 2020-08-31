@@ -6,13 +6,13 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 12:48:23 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 17:36:36 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/31 17:26:27 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-t_vec	init_axis(t_obj obj)
+t_vec	init_center(t_obj obj)
 {
 	t_vec vec;
 	t_vec min;
@@ -24,10 +24,10 @@ t_vec	init_axis(t_obj obj)
 	vec.y = -(max.y - min.y) / 2;
 	vec.z = -(max.z - min.z) / 2;
 	vec.w = 0.0;
-	
-	vec.x = 0.2;
-	vec.y = 0.2;
-	vec.z = 0.2;
+
+	vec.x = -0.0;
+	vec.y = -0.0;
+	vec.z = -0.3;
 	
 	return (vec);
 }
