@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/31 17:14:42 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/01 12:54:18 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ GLFWwindow		*init_window();
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void	error_callback(int error, const char *description);
 void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
+t_vec	move_view(t_vec cam_pos, GLFWwindow *window);
 
 //shader.c
 unsigned int	init_shader_program();
@@ -95,15 +96,17 @@ t_mat			identity(void);
 
 //matrix_mvp.c
 t_mat			get_model_matrix(t_mat t, t_mat r, t_mat s);
-t_mat			get_view_matrix(t_mat t, t_mat r, t_mat s);
+t_mat			get_view_matrix(t_mat t, t_vec axis, float angle, t_mat s);
 t_mat			get_perspective_matrix(float width, float height, float fov);
 t_mat			get_mvp_matrix(t_mat m, t_mat v, t_mat p);
 
 //matrix_operations.c
-t_mat			minus_matrix(t_mat p);
-t_mat			div_matrix(t_mat m);
 t_vec			multiply_mat_vec(t_mat m, t_vec v);
 t_mat			multiply_mat_mat(t_mat m1, t_mat m2);
+
+//matrix_rev.c
+t_mat			rev_s(t_mat s);
+t_mat			rev_t(t_mat t);
 
 //matrix_utils.c
 void			get_vec_as_tab(t_vec v, float *t);

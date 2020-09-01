@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_mvp.c                                       :+:      :+:    :+:   */
+/*   matrix_rev.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/31 14:21:53 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/31 14:28:10 by gboudrie         ###   ########.fr       */
+/*   Created: 2020/09/01 12:05:16 by gboudrie          #+#    #+#             */
+/*   Updated: 2020/09/01 12:16:47 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-t_mat	get_model_matrix(t_mat t, t_mat r, t_mat s)
+t_mat	rev_s(t_mat s)
 {
-	t_mat	m;
+	s.col[0].x = 1 / s.col[0].x;
+	s.col[1].y = 1 / s.col[1].y;
+	s.col[2].z = 1 / s.col[2].z;
+	return (s);
+}
 
-	m = identity();
-	m = multiply_mat_mat(s, m);
-	m = multiply_mat_mat(r, m);
-	m = multiply_mat_mat(t, m);
-	return (m);
+t_mat	rev_t(t_mat t)
+{
+	t.col[3].x *= -1;
+	t.col[3].y *= -1;
+	t.col[3].z *= -1;
+	return (t);
 }

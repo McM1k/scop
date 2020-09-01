@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/08/31 14:30:08 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/09/01 12:06:04 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,7 +57,8 @@ PROJ_SRC_LIST = main.c \
 				init.c \
 				utils.c \
 				textures.c \
-				matrix_mvp.c
+				matrix_mvp.c \
+				matrix_rev.c
 
 
 # objects

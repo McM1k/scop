@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:07:37 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:24:29 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/01 13:04:23 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,23 @@ void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_X && action == GLFW_PRESS)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	if (key == GLFW_KEY_X && action == GLFW_RELEASE)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+t_vec   move_view(t_vec cam_pos, GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+        cam_pos.y -= 0.01;
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        cam_pos.y += 0.01;
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+        cam_pos.x += 0.01;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+        cam_pos.x -= 0.01;
+    if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
+        cam_pos.z += 0.01;
+    if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
+        cam_pos.z -= 0.01;
+
+    return (cam_pos);
 }

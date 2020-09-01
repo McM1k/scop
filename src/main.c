@@ -6,11 +6,12 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/31 18:26:26 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/01 15:17:26 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
+
 
 int     main(int ac, char **av)
 {
@@ -66,7 +67,8 @@ int     main(int ac, char **av)
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
 	t_mat	t = translate(init_center(*obj));
 	t_mat	s = scale(init_size(*obj));
-	t_mat	r;
+	t_mat	r, t_v;
+	t_vec	cam_pos = set_vec(0.0, 0.0, 0.0, 1.0);
 	t_mat	m, v, p;
 
 	while(!glfwWindowShouldClose(window))
@@ -77,10 +79,12 @@ int     main(int ac, char **av)
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 		r = rotate(vec, (float)glfwGetTime());
 		m = get_model_matrix(t, r, s);
-		v = get_view_matrix(identity(), identity(), identity());
+		cam_pos = move_view(cam_pos, window);
+		t_v = translate(cam_pos);
+		v = get_view_matrix(t_v, vec, 0.0, identity());
 		p = get_perspective_matrix(800, 600, 90);
-		get_mat_as_tab(get_mvp_matrix(m, identity(), p), trans);
-//get_mat_as_tab(get_mvp_matrix(m, v, identity()), trans);
+//		get_mat_as_tab(get_mvp_matrix(m, identity(), p), trans);
+		get_mat_as_tab(get_mvp_matrix(m, v, identity()), trans);
 		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
 		glUseProgram(shaderProgram);
