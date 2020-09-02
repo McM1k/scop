@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 14:21:53 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/01 15:16:58 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 16:38:18 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_mat	get_model_matrix(t_mat t, t_mat r, t_mat s)
 	t_mat	m;
 
 	m = identity();
-	m = multiply_mat_mat(t, m);
-	m = multiply_mat_mat(r, m);
 	m = multiply_mat_mat(s, m);
+	m = multiply_mat_mat(r, m);
+	m = multiply_mat_mat(t, m);
 	return (m);
 }
 
@@ -41,7 +41,7 @@ t_mat	get_perspective_matrix(float width, float height, float fov)
 	float	near;
 	float	far;
 
-	near = 10.0;
+	near = 0.1;
 	far = 100.0;
 	tanHalfFOV = tanf((fov / 2.0) * M_PI / 180.0);
 	p.col[0].x = 1.0 / (tanHalfFOV * width/height);
@@ -58,7 +58,7 @@ t_mat	get_perspective_matrix(float width, float height, float fov)
 	p.col[2].w = -1.0;
 	p.col[3].x = 0.0;
 	p.col[3].y = 0.0;
-	p.col[3].z = (2 * near * far) / (far - near);
+	p.col[3].z = -(2 * near * far) / (far - near);
 	p.col[3].w = 0.0;
 	return (p);
 }

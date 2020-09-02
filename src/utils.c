@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:32:47 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:26:03 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:03:44 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ t_vec	get_mins(t_obj obj)
 
 	while (i < obj.vertices_number)
 	{
-		if (vec.x > obj.vertices[i])
-			vec.x = obj.vertices[i];
+		if (vec.x > obj.vertices[i + 0])
+			vec.x = obj.vertices[i + 0];
 		if (vec.y > obj.vertices[i + 1])
 			vec.y = obj.vertices[i + 1];
 		if (vec.z > obj.vertices[i + 2])
 			vec.z = obj.vertices[i + 2];
 		i+=3;
 	}
-	
+
 	return vec;
 }
 
@@ -46,14 +46,14 @@ t_vec	get_maxs(t_obj obj)
 
 	while (i < obj.vertices_number)
 	{
-		if (vec.x < obj.vertices[i])
-			vec.x = obj.vertices[i];
+		if (vec.x < obj.vertices[i + 0])
+			vec.x = obj.vertices[i + 0];
 		if (vec.y < obj.vertices[i + 1])
 			vec.y = obj.vertices[i + 1];
 		if (vec.z < obj.vertices[i + 2])
 			vec.z = obj.vertices[i + 2];
 		i+=3;
 	}
-	
+
 	return vec;
 }

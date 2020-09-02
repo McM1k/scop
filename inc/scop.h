@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/01 12:54:18 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:05:44 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_vec			multiply_mat_vec(t_mat m, t_vec v);
 t_mat			multiply_mat_mat(t_mat m1, t_mat m2);
 
 //matrix_rev.c
+t_mat			rev_mirror(t_mat m);
 t_mat			rev_s(t_mat s);
 t_mat			rev_t(t_mat t);
 
@@ -113,9 +114,11 @@ void			get_vec_as_tab(t_vec v, float *t);
 void			get_mat_as_tab(t_mat m, float *t);
 t_vec			set_vec(float x, float y, float z, float w);
 
-//init.c
-t_vec			init_center(t_obj obj);
+//obj_init.c
+void			move_to_center(t_obj *ptr);
+//void			resize(t_obj *ptr);
 t_vec			init_size(t_obj obj);
+t_vec			init_center(t_obj obj);
 
 //utils.c
 t_vec			get_mins(t_obj obj);

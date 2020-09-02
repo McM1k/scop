@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 16:26:47 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:11:41 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_obj		*cut_lines(char *src)
 	obj_malloc(ptr, lines);
 	ft_splitdel((void **)lines);
 	get_obj_data(ptr);
+	move_to_center(ptr);
 	return (ptr);
 }
 

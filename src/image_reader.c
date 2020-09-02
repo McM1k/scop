@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/31 11:55:13 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:24:40 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bmp		*read_bmp(char *path)
 		return (NULL);
 	if (!get_bmp_info(buf_head, &bmp))
 		return (NULL);
-	size = bmp.biWidth * bmp.biHeight * bmp.biBitCount / 8;
+	size = (bmp.biWidth + 1) * (bmp.biHeight + 1) * bmp.biBitCount / 8;
 	bmp.image = ft_memalloc(size);
 	if ((ret = read(fd, bmp.image, size)) == -1)
 		return (NULL);
