@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/03 18:43:56 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:05:44 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_obj
 	int				smooth;
 }					t_obj;
 
-typedef struct		  __attribute__((packed)) s_bmph
+typedef struct		  __attribute__((packed)) s_bmp
 {
 	char			bfType1;
 	char			bfType2;
@@ -65,14 +65,9 @@ typedef struct		  __attribute__((packed)) s_bmph
 	int				biYPelsPerMeter;
 	int				biClrUsed;
 	int				biClrImportant;
-}					t_bmph;
+	unsigned char	*image __attribute__((aligned(8)));
+}					t_bmp;
 
-typedef struct		s_texture
-{
-	t_bmph			header;
-	unsigned char	*image;
-	unsigned int	tex_nb;
-}					t_texture;
 
 
 //window.c
@@ -88,7 +83,7 @@ t_vec	move_view(t_vec cam_pos, GLFWwindow *window);
 unsigned int	init_shader_program();
 
 //image_reader.c
-t_texture		*read_bmp(char *path);
+t_bmp			*read_bmp(char *path);
 
 //obj_reader.c
 t_obj			*get_obj(char *path);
@@ -131,6 +126,5 @@ t_vec			get_maxs(t_obj obj);
 
 //textures.c
 void			get_obj_data(t_obj *ptr);
-void			new_tex(char *path, unsigned int tx_id);
 
 #endif

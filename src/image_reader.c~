@@ -6,13 +6,13 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 14:34:05 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/03 18:20:21 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/02 18:24:40 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-t_bmph		*get_bmp_info(char *header, t_bmp *bmph)
+t_bmp		*get_bmp_info(char *header, t_bmp *bmp)
 {
 
 	ft_memcpy(bmp, header, 54);
@@ -29,29 +29,28 @@ t_bmph		*get_bmp_info(char *header, t_bmp *bmph)
 	return (bmp);
 }
 
-t_texture	*read_bmp(char *path)
+t_bmp		*read_bmp(char *path)
 {
-	t_texture	tx;
-	int			fd;
-	char		buf_head[54];
-	int			size;
-	int			ret;
-	t_texture	*ptr;
+	t_bmp	bmp;
+	int		fd;
+	char	buf_head[54];
+	int		size;
+	int		ret;
+	t_bmp	*ptr;
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (NULL);
 	if ((ret = read(fd, buf_head, 54)) == -1 || (ret < 54))
 		return (NULL);
-	if (!get_bmp_info(buf_head, &tx.header))
+	if (!get_bmp_info(buf_head, &bmp))
 		return (NULL);
-	size = (tx.header.biWidth + 1) * (tx.header.biHeight + 1) 
-		* tx.header.biBitCount / 8;
-	tx.image = ft_memalloc(size);
-	if ((ret = read(fd, tx.image, size)) == -1)
+	size = (bmp.biWidth + 1) * (bmp.biHeight + 1) * bmp.biBitCount / 8;
+	bmp.image = ft_memalloc(size);
+	if ((ret = read(fd, bmp.image, size)) == -1)
 		return (NULL);
 	if (close(fd) == -1)
 		return (NULL);
-	ptr = ft_memalloc(sizeof(t_texture));
-	*ptr = tx;
+	ptr = ft_memalloc(sizeof(t_bmp));
+	*ptr = bmp;
 	return (ptr);
 }
