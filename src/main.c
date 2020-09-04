@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/03 18:55:57 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/04 16:50:49 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@ int     main(int ac, char **av)
 	if (!(obj = get_obj(av[1])))
 		return(-1);
 	
-	unsigned int texs[3];
-	glGenTextures(3, &texs);  
-	new_tex("res/unicorn.bmp", tex[0]);
-	new_tex("res/ivy.bmp", tex[1]);
-	new_tex("res/vivlevan.bmp", tex[2]);
-	glEnable(GL_DEPTH_TEST);
-
+	unsigned int shaderProgram;
+	shaderProgram = init_shader_program();
+	init_tex(shaderProgram);
 	float	trans[16];
-
 	unsigned int EBO;
 	glGenBuffers(1, &EBO);
 	unsigned int VBO;
@@ -54,8 +49,6 @@ int     main(int ac, char **av)
 						  (void *)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	unsigned int shaderProgram = init_shader_program();
-
 	t_vec vec;
 	vec = set_vec(0.0, 1.0, 0.0, 0.0);
 	t_mat	r, t_v;
@@ -64,10 +57,6 @@ int     main(int ac, char **av)
 
 	while(!glfwWindowShouldClose(window))
     {
-		float timeValue = glfwGetTime();
-		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-		int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 		r = rotate(vec, (float)glfwGetTime());
 		m = get_model_matrix(identity(), r, identity());
 		cam_pos = move_view(cam_pos, window);
@@ -76,9 +65,9 @@ int     main(int ac, char **av)
 		p = get_perspective_matrix(800, 600, 45);
 //		get_mat_as_tab(get_mvp_matrix(m, identity(), p), trans);
 		get_mat_as_tab(get_mvp_matrix(m, v, p), trans);
-		unsigned int transformLoc = glGetUniformLocation(shaderProgram, "transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, trans);
-		glUseProgram(shaderProgram);
+		glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "transform"), 1, GL_FALSE, trans);
+		glUniform4f(glGetUniformLocation(shaderProgram, "mixvalues"),
+					1.0, 0.0, 0.0, 0.0);
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, obj->triangles * 3, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);		
@@ -88,9 +77,7 @@ int     main(int ac, char **av)
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
-	ft_memdel((void **)&(bmp->image));
-	ft_memdel((void **)&bmp);
- 	ft_memdel((void **)&(obj->vertices));
+ 	ft_memdel((void **)&(obj->data));
 	ft_memdel((void **)&(obj->indices));
 	ft_memdel((void **)&obj);
     glfwTerminate();

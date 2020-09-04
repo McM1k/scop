@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/03 18:43:56 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/04 16:45:23 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ t_vec			set_vec(float x, float y, float z, float w);
 
 //obj_init.c
 void			move_to_center(t_obj *ptr);
-//void			resize(t_obj *ptr);
+void			normalize(t_obj *ptr);
 t_vec			init_size(t_obj obj);
 t_vec			init_center(t_obj obj);
 
@@ -131,6 +131,6 @@ t_vec			get_maxs(t_obj obj);
 
 //textures.c
 void			get_obj_data(t_obj *ptr);
-void			new_tex(char *path, unsigned int tx_id);
+void			init_tex(unsigned int shaderProgram);
 
 #endif

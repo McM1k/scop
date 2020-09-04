@@ -6,17 +6,18 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:14:03 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/03 18:54:47 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/04 16:49:50 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void		new_tex(char *path, unsigned int tx_id)
+void		new_tex(char *path, unsigned int tx_id, GLenum tx_enum)
 {
 	t_texture	*ptr;
 
 	ptr = read_bmp(path);
+	glActiveTexture(tx_enum);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
@@ -30,20 +31,33 @@ void		new_tex(char *path, unsigned int tx_id)
 	ft_memdel((void **)&ptr);
 }
 
+void		init_tex(unsigned int shaderProgram)
+{
+    unsigned int texs[3];
+
+    glGenTextures(3, texs);
+    glUseProgram(shaderProgram);
+    new_tex("res/unicorn.bmp", texs[0], GL_TEXTURE0);
+    new_tex("res/ivy.bmp", texs[1], GL_TEXTURE1);
+    new_tex("res/vivlevan.bmp", texs[2], GL_TEXTURE2);
+    glUniform1i(glGetUniformLocation(shaderProgram, "tex1"), 0);
+    glUniform1i(glGetUniformLocation(shaderProgram, "tex2"), 1);
+    glUniform1i(glGetUniformLocation(shaderProgram, "tex3"), 2);
+    glEnable(GL_DEPTH_TEST);
+}
+
 void		scale_vertices(t_obj *ptr)
 {
 	int		i;
 	int		j;
-	t_vec	size;
 
 	i = 0;
 	j = 0;
-	size = init_size(*ptr);
 	while (i < ptr->vertices_number)
 	{
-		ptr->data[j + 0] = ptr->vertices[i + 0] * size.x;
-		ptr->data[j + 1] = ptr->vertices[i + 1] * size.x;
-		ptr->data[j + 2] = ptr->vertices[i + 2] * size.x;
+		ptr->data[j + 0] = ptr->vertices[i + 0];
+		ptr->data[j + 1] = ptr->vertices[i + 1];
+		ptr->data[j + 2] = ptr->vertices[i + 2];
 		i += 3;
 		j += 5;
 	}

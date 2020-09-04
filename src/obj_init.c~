@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_init.c                                         :+:      :+:    :+:   */
+/*   obj_init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 12:48:23 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 14:52:42 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/04 12:56:24 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,4 @@ t_vec	init_size(t_obj obj)
 	vec.x = 1/vec.w;
 	vec.w = 1;
 	return (vec);
-}
-
-void	normalize(t_obj *ptr)
-{
-	int		i;
-	t_vec	size;
-
-	i = 0;
-    size = init_size(*ptr);
-    while (i < (ptr->vertices_number / 3) * 5)
-    {
-        ptr->data[i + 0] *= size.x;
-        ptr->data[i + 1] *= size.y;
-        ptr->data[i + 2] *= size.z;
-        i+=5;
-    }
 }

@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:12:21 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 11:50:05 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/08/27 14:25:51 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,23 @@ unsigned int	init_shader(char *path, GLenum shaderType)
 
 unsigned int    init_shader_program()
 {
-	int				success;
-	char			infoLog[512];
-	unsigned int	shaderProgram;
-    unsigned int	shaders[2];
-
-	shaders[0] = init_shader("src/vertex.glsl", GL_VERTEX_SHADER);
-	shaders[1] = init_shader("src/fragment.glsl", GL_FRAGMENT_SHADER);
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, shaders[0]);
-	glAttachShader(shaderProgram, shaders[1]);
-	glLinkProgram(shaderProgram);
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if(!success)
-	{
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		error_callback(-7, "shader program compilation failed");
-		ft_putendl(infoLog);
-	}
-	glDeleteShader(shaders[0]);
-	glDeleteShader(shaders[1]);
-	return (shaderProgram);
+    unsigned int vertexShader = init_shader("src/vertex.glsl", GL_VERTEX_SHADER);
+    unsigned int fragmentShader = init_shader("src/fragment.glsl", GL_FRAGMENT_SHADER);
+    unsigned int shaderProgram;
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+    int success;
+    char infoLog[512];
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if(!success)
+    {
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        error_callback(-7, "shader program compilation failed");
+        ft_putendl(infoLog);
+    }
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    return shaderProgram;
 }
