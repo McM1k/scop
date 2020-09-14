@@ -7,6 +7,6 @@ uniform mat4 transform;
 void main()
 {
 	gl_Position = transform * vec4(aPos, 1.0);
-	ourColor = vec3(aPos * 0.2 + 0.3);
+	ourColor = vec3(aPos * 2 + 0.4);
 	TexCoord = aTex;
 }

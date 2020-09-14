@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:14:03 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 16:49:50 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/12 22:57:15 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		new_tex(char *path, unsigned int tx_id, GLenum tx_enum)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, tx_id);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ptr->header.biWidth,
-				 ptr->header.biHeight, 0, GL_BGR, GL_UNSIGNED_BYTE, ptr->image);
+				 ptr->header.biHeight, 0, GL_BGR,
+		     GL_UNSIGNED_BYTE, ptr->image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	ft_memdel((void **)&(ptr->image));
 	ft_memdel((void **)&ptr);
@@ -79,8 +80,8 @@ void		scale_coords(t_obj *ptr)
 		size = max.z - min.z;
 	while (i < 5 * (ptr->vertices_number / 3))
 	{
-		ptr->data[i + 4] = ((ptr->data[i + 1] * 2 / size) - 1) * 10;
-		ptr->data[i + 3] = ((ptr->data[i + 2] * 2 / size) - 1) * 10;
+		ptr->data[i + 4] = ((ptr->data[i + 1] * 2 / size) - 1) * 3;
+		ptr->data[i + 3] = ((ptr->data[i + 2] * 2 / size) - 1) * 3;
 		i += 5;
 	}
 

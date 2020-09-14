@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:07:37 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/02 16:20:14 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/09 13:53:20 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,34 @@ t_vec   move_view(t_vec cam_pos, GLFWwindow *window)
         cam_pos.x -= 0.01;
     if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
         cam_pos.x += 0.01;
-    if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
         cam_pos.z -= 0.01;
-    if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
         cam_pos.z += 0.01;
 
     return (cam_pos);
+}
+
+int		change_tex(int tex_mode, GLFWwindow *window)
+{	
+    if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_KP_0) == GLFW_PRESS
+	    || glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		return (0);
+    else if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_KP_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		return (1);
+    else if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_KP_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		return (2);
+    else if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_KP_0) == GLFW_PRESS
+		|| glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+		return (3);
+	else
+		return (tex_mode);
 }

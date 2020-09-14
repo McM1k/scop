@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:59 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:26:13 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/13 09:34:25 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ GLFWwindow		*init_window()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	GLFWwindow* window = glfwCreateWindow(800, 600, "Scop", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1200, 800, "Scop", NULL, NULL);
     if (window == NULL)
     {
         ft_putendl("Failed to create GLFW window");
@@ -33,7 +33,7 @@ GLFWwindow		*init_window()
         ft_putendl("Failed to initialize GLAD");
         return NULL;
     }
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, 1200, 800);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetKeyCallback(window, key_callback);
 	return window;

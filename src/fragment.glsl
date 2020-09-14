@@ -11,7 +11,7 @@ uniform vec4 mixvalues;
 void main()
 {
 	float grey;
-	grey = (4 * ourColor.x + 8 * ourColor.y + ourColor.z) / 7;
+	grey = (2.5 * ourColor.x + 6.5 * ourColor.y + 0.8 * ourColor.z) / 7;
 	FragColor = texture(tex1, TexCoord) * mixvalues.x
 			  + texture(tex2, TexCoord) * mixvalues.y
 			  + texture(tex3, TexCoord) * mixvalues.z

@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 16:45:23 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/10 12:45:45 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void	error_callback(int error, const char *description);
 void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
 t_vec	move_view(t_vec cam_pos, GLFWwindow *window);
+int		change_tex(int tex_mode, GLFWwindow *window);
 
 //shader.c
 unsigned int	init_shader_program();
@@ -132,5 +133,8 @@ t_vec			get_maxs(t_obj obj);
 //textures.c
 void			get_obj_data(t_obj *ptr);
 void			init_tex(unsigned int shaderProgram);
+
+//loop.c
+t_vec			update_mix_values(t_vec mix, int mode);
 
 #endif
