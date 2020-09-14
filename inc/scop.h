@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/14 12:37:24 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/14 14:56:12 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <sys/stat.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+# define W_WIDTH 1200
+# define W_HEIGHT 800
 
 typedef struct		s_vec
 {
