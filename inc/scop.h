@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/10 12:45:45 by mcm1k            ###   ########.fr       */
+/*   Updated: 2020/09/14 12:37:24 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,6 @@ void			init_tex(unsigned int shaderProgram);
 //loop.c
 t_vec			update_mix_values(t_vec mix, int mode);
 
+//init.c
+unsigned int	init_vao(t_obj *obj);
 #endif
