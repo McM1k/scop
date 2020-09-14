@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/14 14:56:12 by mcm1k            ###   ########.fr       */
+/*   Updated: 2020/09/14 19:01:31 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,10 @@ void			init_tex(unsigned int shaderProgram);
 
 //loop.c
 t_vec			update_mix_values(t_vec mix, int mode);
+void			do_the_gl_stuff(GLFWwindow *window, unsigned int vao,
+								t_obj *obj);
+void			do_the_mat_stuff(t_vec cam_pos, unsigned int shaderProgram,
+								 t_vec mix);
 
 //init.c
 unsigned int	init_vao(t_obj *obj);
