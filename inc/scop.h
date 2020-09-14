@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 16:45:23 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:37:24 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,6 @@ t_vec			get_maxs(t_obj obj);
 void			get_obj_data(t_obj *ptr);
 void			init_tex(unsigned int shaderProgram);
 
+//init.c
+unsigned int	init_vao(t_obj *obj);
 #endif
