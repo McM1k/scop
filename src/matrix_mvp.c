@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 14:21:53 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/02 16:38:18 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:39:18 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ t_mat	get_view_matrix(t_mat t, t_vec axis, float angle, t_mat s)
 t_mat	get_perspective_matrix(float width, float height, float fov)
 {
 	t_mat	p;
-	float	tanHalfFOV;
+	float	tan_half_fov;
 	float	near;
 	float	far;
 
 	near = 0.1;
 	far = 100.0;
-	tanHalfFOV = tanf((fov / 2.0) * M_PI / 180.0);
-	p.col[0].x = 1.0 / (tanHalfFOV * width/height);
+	tan_half_fov = tanf((fov / 2.0) * M_PI / 180.0);
+	p.col[0].x = 1.0 / (tan_half_fov * width / height);
 	p.col[0].y = 0.0;
 	p.col[0].z = 0.0;
 	p.col[0].w = 0.0;
 	p.col[1].x = 0.0;
-	p.col[1].y = 1.0 / tanHalfFOV;
+	p.col[1].y = 1.0 / tan_half_fov;
 	p.col[1].z = 0.0;
 	p.col[1].w = 0.0;
 	p.col[2].x = 0.0;
 	p.col[2].y = 0.0;
-	p.col[2].z = - (far + near) / (far - near);
+	p.col[2].z = -(far + near) / (far - near);
 	p.col[2].w = -1.0;
 	p.col[3].x = 0.0;
 	p.col[3].y = 0.0;

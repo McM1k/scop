@@ -6,13 +6,13 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 14:12:21 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 11:50:05 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:52:32 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h" 
+#include "scop.h"
 
-const char	*retrieve_shader_source(char *path)
+const char		*retrieve_shader_source(char *path)
 {
 	int			fd;
 	struct stat	st;
@@ -31,50 +31,48 @@ const char	*retrieve_shader_source(char *path)
 	return (src);
 }
 
-unsigned int	init_shader(char *path, GLenum shaderType)
+unsigned int	init_shader(char *path, GLenum shader_type)
 {
 	const char		*source;
 	unsigned int	shader;
 	int				success;
-	char			infoLog[512];
+	char			info_log[512];
 
 	source = retrieve_shader_source(path);
-	shader = glCreateShader(shaderType);
+	shader = glCreateShader(shader_type);
 	glShaderSource(shader, 1, &source, NULL);
 	glCompileShader(shader);
-
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		glGetShaderInfoLog(shader, 512, NULL, info_log);
 		error_callback(-6, "shader compilation failed");
-		ft_putendl(infoLog);
+		ft_putendl(info_log);
 	}
-
 	return (shader);
 }
 
-unsigned int    init_shader_program()
+unsigned int	init_shader_program(void)
 {
 	int				success;
-	char			infoLog[512];
-	unsigned int	shaderProgram;
-    unsigned int	shaders[2];
+	char			info_log[512];
+	unsigned int	shader_program;
+	unsigned int	shaders[2];
 
 	shaders[0] = init_shader("src/vertex.glsl", GL_VERTEX_SHADER);
 	shaders[1] = init_shader("src/fragment.glsl", GL_FRAGMENT_SHADER);
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, shaders[0]);
-	glAttachShader(shaderProgram, shaders[1]);
-	glLinkProgram(shaderProgram);
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if(!success)
+	shader_program = glCreateProgram();
+	glAttachShader(shader_program, shaders[0]);
+	glAttachShader(shader_program, shaders[1]);
+	glLinkProgram(shader_program);
+	glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
+	if (!success)
 	{
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+		glGetProgramInfoLog(shader_program, 512, NULL, info_log);
 		error_callback(-7, "shader program compilation failed");
-		ft_putendl(infoLog);
+		ft_putendl(info_log);
 	}
 	glDeleteShader(shaders[0]);
 	glDeleteShader(shaders[1]);
-	return (shaderProgram);
+	return (shader_program);
 }

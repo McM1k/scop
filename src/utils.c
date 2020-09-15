@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 14:32:47 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/02 18:03:44 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:44:49 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ t_vec	get_mins(t_obj obj)
 {
 	int		i;
 	t_vec	vec;
+
 	vec.x = obj.vertices[0];
 	vec.y = obj.vertices[1];
 	vec.z = obj.vertices[2];
 	i = 3;
-
 	while (i < obj.vertices_number)
 	{
 		if (vec.x > obj.vertices[i + 0])
@@ -29,21 +29,20 @@ t_vec	get_mins(t_obj obj)
 			vec.y = obj.vertices[i + 1];
 		if (vec.z > obj.vertices[i + 2])
 			vec.z = obj.vertices[i + 2];
-		i+=3;
+		i += 3;
 	}
-
-	return vec;
+	return (vec);
 }
 
 t_vec	get_maxs(t_obj obj)
 {
 	int		i;
 	t_vec	vec;
+
 	vec.x = obj.vertices[0];
 	vec.y = obj.vertices[1];
 	vec.z = obj.vertices[2];
 	i = 3;
-
 	while (i < obj.vertices_number)
 	{
 		if (vec.x < obj.vertices[i + 0])
@@ -52,8 +51,7 @@ t_vec	get_maxs(t_obj obj)
 			vec.y = obj.vertices[i + 1];
 		if (vec.z < obj.vertices[i + 2])
 			vec.z = obj.vertices[i + 2];
-		i+=3;
+		i += 3;
 	}
-
-	return vec;
+	return (vec);
 }

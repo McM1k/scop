@@ -6,26 +6,26 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 11:22:47 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:25:34 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:32:46 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 
-void    get_vec_as_tab(t_vec v, float *t)
+void	get_vec_as_tab(t_vec v, float *t)
 {
-    t[0] = v.x;
-    t[1] = v.y;
-    t[2] = v.z;
-    t[3] = v.w;
+	t[0] = v.x;
+	t[1] = v.y;
+	t[2] = v.z;
+	t[3] = v.w;
 }
 
-void    get_mat_as_tab(t_mat m, float *t)
+void	get_mat_as_tab(t_mat m, float *t)
 {
-    get_vec_as_tab(m.col[0], &(t[0]));
-    get_vec_as_tab(m.col[1], &(t[4]));
-    get_vec_as_tab(m.col[2], &(t[8]));
-    get_vec_as_tab(m.col[3], &(t[12]));
+	get_vec_as_tab(m.col[0], &(t[0]));
+	get_vec_as_tab(m.col[1], &(t[4]));
+	get_vec_as_tab(m.col[2], &(t[8]));
+	get_vec_as_tab(m.col[3], &(t[12]));
 }
 
 t_vec	set_vec(float x, float y, float z, float w)
@@ -36,6 +36,5 @@ t_vec	set_vec(float x, float y, float z, float w)
 	vec.y = y;
 	vec.z = z;
 	vec.w = w;
-
 	return (vec);
 }

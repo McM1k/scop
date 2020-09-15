@@ -6,11 +6,12 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 11:56:08 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/04 14:53:23 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:47:00 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
+
 void		triangulate(t_obj *ptr, char **split, int *tri)
 {
 	int		f_size;
@@ -23,7 +24,7 @@ void		triangulate(t_obj *ptr, char **split, int *tri)
 	while (i < f_size - 3)
 	{
 		ptr->indices[(*tri)] = (unsigned int)ft_atoi(split[1]) - 1;
-		ptr->indices[(*tri) + 1] = (unsigned int)ft_atoi(split[i + 2]) - 1;  
+		ptr->indices[(*tri) + 1] = (unsigned int)ft_atoi(split[i + 2]) - 1;
 		ptr->indices[(*tri) + 2] = (unsigned int)ft_atoi(split[i + 3]) - 1;
 		i++;
 		(*tri) += 3;
@@ -42,13 +43,13 @@ void		fill_obj_data(t_obj *ptr, char **lines)
 	tri = 0;
 	while (lines[i])
 	{
-	split = ft_strsplit(lines[i], ' ');
+		split = ft_strsplit(lines[i], ' ');
 		if (split[0][0] == 'v')
 		{
-			ptr->vertices[v] = strtof(split[1], NULL);
-			ptr->vertices[v+1] = strtof(split[2], NULL);
-			ptr->vertices[v+2] = strtof(split[3], NULL);
-			v+=3;
+			ptr->vertices[v + 0] = strtof(split[1], NULL);
+			ptr->vertices[v + 1] = strtof(split[2], NULL);
+			ptr->vertices[v + 2] = strtof(split[3], NULL);
+			v += 3;
 		}
 		else if (split[0][0] == 'f')
 			triangulate(ptr, split, &tri);

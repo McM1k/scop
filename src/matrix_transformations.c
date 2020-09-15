@@ -6,15 +6,16 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 11:24:34 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/08/27 14:25:23 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:40:17 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- 
+
 #include "scop.h"
 
 t_mat	translate(t_vec t)
 {
 	t_mat	mat;
+
 	mat.col[0].x = 1;
 	mat.col[0].y = 0;
 	mat.col[0].z = 0;
@@ -37,6 +38,7 @@ t_mat	translate(t_vec t)
 t_mat	scale(t_vec s)
 {
 	t_mat	mat;
+
 	mat.col[0].x = s.x;
 	mat.col[0].y = 0;
 	mat.col[0].z = 0;

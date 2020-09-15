@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:19:09 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/01 12:05:03 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:43:38 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_vec	multiply_mat_vec(t_mat m, t_vec v)
 		+ m.col[1].w * v.y
 		+ m.col[2].w * v.z
 		+ m.col[3].w * v.w;
-
 	return (res);
 }
 

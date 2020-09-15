@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/09/14 12:35:12 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/09/15 17:59:50 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,7 +33,7 @@ CR_DL =	\xe2\x95\x9a
 CC =			clang
 CFLAGS =		-Wall -Wextra -Werror
 IFLAGS =		-I/Users/gboudrie/.brew/include -Iinc -Ilib
-LFLAGS =		-L/Users/gboudrie/.brew/lib -lglfw -Llib/libft -lft -lm -ldl
+LFLAGS =		-L/Users/gboudrie/.brew/lib -lglfw -Llib/libft -lft
 
 # binaries
 EXE =			scop
@@ -54,13 +54,13 @@ PROJ_SRC_LIST = main.c \
 				matrix_transformations.c \
 				matrix_operations.c \
 				matrix_utils.c \
+				matrix_mvp.c \
+				matrix_rev.c \
 				obj_init.c \
 				utils.c \
 				textures.c \
-				matrix_mvp.c \
-				matrix_rev.c \
-				loop.c \
-				init.c
+				init.c \
+				loop.c
 
 # objects
 PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)

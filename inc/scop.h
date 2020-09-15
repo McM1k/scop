@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 14:03:26 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 18:38:09 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define W_WIDTH 1200
 # define W_HEIGHT 800
+# define BMPH_SIZE 54
 
 typedef struct		s_vec
 {
@@ -84,7 +85,7 @@ GLFWwindow		*init_window();
 //events.c
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void	error_callback(int error, const char *description);
-void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
+void	key_callback(GLFWwindow *window, int key, int scancode, int action);
 t_vec	move_view(t_vec cam_pos, GLFWwindow *window);
 int		change_tex(int tex_mode, GLFWwindow *window);
 
@@ -136,16 +137,16 @@ t_vec			get_maxs(t_obj obj);
 
 //textures.c
 void			get_obj_data(t_obj *ptr);
-void			init_tex(unsigned int shaderProgram);
+void			init_tex(unsigned int shader_program);
 
 //loop.c
 t_vec			update_mix_values(t_vec mix, int mode);
 void			do_the_gl_stuff(GLFWwindow *window, unsigned int vao,
 								t_obj *obj);
-void			do_the_mat_stuff(t_vec cam_pos, unsigned int shaderProgram,
+void			do_the_mat_stuff(t_vec cam_pos, unsigned int shader_program,
 								 t_vec mix);
 void			ft_loop(GLFWwindow *window, unsigned int vao,
-						t_obj *obj, unsigned int shaderProgram);
+						t_obj *obj, unsigned int shader_program);
 
 //init.c
 unsigned int	init_vao(t_obj *obj);
