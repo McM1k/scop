@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:12 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 14:04:47 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:18:06 by gboudrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int     main(int ac, char **av)
 	init_tex(shaderProgram);
     unsigned int vao;
 	vao = init_vao(obj);
-//	ft_loop(window, vao, obj, shaderProgram);
-    t_vec   cam_pos;
+	ft_loop(window, vao, obj, shaderProgram);
+/*    t_vec   cam_pos;
     int     tex_mode;
     t_vec   mix;
 
@@ -45,10 +45,10 @@ int     main(int ac, char **av)
         do_the_mat_stuff(cam_pos, shaderProgram, mix);
         do_the_gl_stuff(window, vao, obj);
     }
-//    free_obj(obj);
-    ft_memdel((void **)&(obj->data));
+*/    free_obj(obj);
+	/*  ft_memdel((void **)&(obj->data));
     ft_memdel((void **)&(obj->indices));
     ft_memdel((void **)&obj);
-	glfwTerminate();
+*/	glfwTerminate();
     return(0);
 }
