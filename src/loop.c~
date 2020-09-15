@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.@42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 12:32:22 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 13:55:39 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/14 19:00:17 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,4 @@ void	do_the_mat_stuff(t_vec cam_pos, unsigned int shaderProgram, t_vec mix)
 					   1, GL_FALSE, trans);
 	glUniform4f(glGetUniformLocation(shaderProgram, "mixvalues"),
 				mix.x, mix.y, mix.z, mix.w);
-}
-
-void	ft_loop(GLFWwindow *window, unsigned int vao,
-				t_obj *obj, unsigned int shaderProgram)
-{
-	t_vec   cam_pos;
-    int     tex_mode;
-    t_vec   mix;
-
-	cam_pos = set_vec(0.0, 0.0, 1.0, 1.0);
-    mix = set_vec(1.0, 0.0, 0.0, 0.0);
-    tex_mode = 1;
-    while(!glfwWindowShouldClose(window))
-    {
-        tex_mode = change_tex(tex_mode, window);
-        mix = update_mix_values(mix, tex_mode);
-        cam_pos = move_view(cam_pos, window);
-        do_the_mat_stuff(cam_pos, shaderProgram, mix);
-        do_the_gl_stuff(window, vao, obj);
-    }
 }

@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 14:03:26 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/14 19:01:31 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ void			move_to_center(t_obj *ptr);
 void			normalize(t_obj *ptr);
 t_vec			init_size(t_obj obj);
 t_vec			init_center(t_obj obj);
-void			free_obj(t_obj *obj);
 
 //utils.c
 t_vec			get_mins(t_obj obj);
@@ -144,8 +143,6 @@ void			do_the_gl_stuff(GLFWwindow *window, unsigned int vao,
 								t_obj *obj);
 void			do_the_mat_stuff(t_vec cam_pos, unsigned int shaderProgram,
 								 t_vec mix);
-void			ft_loop(GLFWwindow *window, unsigned int vao,
-						t_obj *obj, unsigned int shaderProgram);
 
 //init.c
 unsigned int	init_vao(t_obj *obj);
