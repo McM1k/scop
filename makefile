@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/09/15 17:59:50 by gboudrie         ###   ########.fr        #
+#    Updated: 2020/09/21 19:20:14 by mcm1k            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,8 +32,8 @@ CR_DL =	\xe2\x95\x9a
 # comp
 CC =			clang
 CFLAGS =		-Wall -Wextra -Werror
-IFLAGS =		-I/Users/gboudrie/.brew/include -Iinc -Ilib
-LFLAGS =		-L/Users/gboudrie/.brew/lib -lglfw -Llib/libft -lft
+IFLAGS =		-I~/.brew/include -Iinc -Ilib
+LFLAGS =		-L~/.brew/lib -lglfw -Llib/libft -lft -lm -ldl
 
 # binaries
 EXE =			scop
@@ -68,6 +68,8 @@ PROJ_OBJ_LIST = $(PROJ_SRC_LIST:.c=.o)
 #paths
 PROJ_SRC =		$(addprefix $(SRC_DIR)/, $(PROJ_SRC_LIST))
 PROJ_OBJ =		$(addprefix $(OBJ_DIR)/, $(PROJ_OBJ_LIST))
+
+UNAME := $(shell uname)
 
 ################################################################################
 
@@ -106,7 +108,9 @@ re :		    fclean all
 .SILENT :
 
 dep :
-		    sh glad.sh
+			if [ $(UNAME) = "Linux" ]; then sudo apt-get install libglfw3; sudo apt-get install libglfw3-dev; fi
+			if [ $(UNAME) = "Darwin" ]; then brew install glfw3;	fi
+			sh glad.sh
 			make -C lib/libft
 
 depclean:

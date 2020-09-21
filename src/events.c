@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:07:37 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 18:38:53 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/21 18:26:21 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	error_callback(int error, const char *decription)
 	ft_putendl(decription);
 }
 
-void	key_callback(GLFWwindow *window, int key, int scancode, int action)
+void	key_callback(GLFWwindow *window, int key, int scancode, int action,
+					int mode)
 {
 	(void)scancode;
+	(void)mode;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_KEY_X && action == GLFW_PRESS)

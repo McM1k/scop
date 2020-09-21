@@ -6,7 +6,7 @@
 /*   By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 16:16:54 by gboudrie          #+#    #+#             */
-/*   Updated: 2020/09/15 18:38:09 by gboudrie         ###   ########.fr       */
+/*   Updated: 2020/09/21 16:42:54 by mcm1k            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ GLFWwindow		*init_window();
 //events.c
 void	framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void	error_callback(int error, const char *description);
-void	key_callback(GLFWwindow *window, int key, int scancode, int action);
+void	key_callback(GLFWwindow *window, int key, int scancode, int action, int mode);
 t_vec	move_view(t_vec cam_pos, GLFWwindow *window);
 int		change_tex(int tex_mode, GLFWwindow *window);
 
