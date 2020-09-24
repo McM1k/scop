@@ -6,7 +6,7 @@
 #    By: gboudrie <gboudrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/05 16:04:24 by gboudrie          #+#    #+#              #
-#    Updated: 2020/09/21 19:20:14 by mcm1k            ###   ########.fr        #
+#    Updated: 2020/09/24 16:34:14 by gboudrie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,8 +32,13 @@ CR_DL =	\xe2\x95\x9a
 # comp
 CC =			clang
 CFLAGS =		-Wall -Wextra -Werror
-IFLAGS =		-I~/.brew/include -Iinc -Ilib
-LFLAGS =		-L~/.brew/lib -lglfw -Llib/libft -lft -lm -ldl
+IFLAGS =		-I$(HOME)/.brew/include -Iinc -Ilib
+LFLAGS =		-L$(HOME)/.brew/lib -Llib/libft -lft -lm -ldl -lglfw
+#ifeq($(UNAME),Darwin)
+#	LFLAGS += -lglfw.3
+#endif
+#ifeq($(UNAME),Linux)
+#	LFLAGS += -lglfw3
 
 # binaries
 EXE =			scop
